@@ -10,7 +10,7 @@ import SponsorLogos from '../components/SponsorLogos.astro';
 import Countdown from '../components/Countdown.astro';
 import { site } from '../lib/site';
 import sponsorData from '../data/sponsors.json';
-import { getNews, slugify, u, fixHtml } from '../lib/utils';
+import { getNews, slugify, u, fixHtml, extUrl } from '../lib/utils';
 import { t, href, type Lang } from '../i18n';
 
 interface Props {
@@ -239,7 +239,17 @@ const hasSponsors = (sponsorData.sponsors ?? []).some((s) => s && (s.naam || s.l
           <h3>{sponsor.clubTitel}</h3>
           <p>{sponsor.clubSamenvatting}</p>
           <ClubPortholes lang={lang} />
-          <a href={href(lang, 'sponsor', '#club-van-100')} class="btn btn-primary">{ui.wordLid}</a>
+          {
+            extUrl(site.clubFormulierUrl) ? (
+              <a href={extUrl(site.clubFormulierUrl)} class="btn btn-primary" target="_blank" rel="noopener">
+                {ui.wordLid}
+              </a>
+            ) : (
+              <a href={href(lang, 'sponsor', '#club-van-100')} class="btn btn-primary">
+                {ui.wordLid}
+              </a>
+            )
+          }
         </article>
 
         <article class="card option" data-reveal style="transition-delay:200ms">

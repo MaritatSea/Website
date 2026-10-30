@@ -93,6 +93,20 @@ veranderd?
 Vanaf het vertrek staat er vanzelf "Dag 1 op zee", "Dag 2 op zee", enzovoort,
 en na de terugkomstdatum "Weer veilig thuis!".
 
+## 📝 Het aanmeldformulier voor de Club van 100
+
+Mensen worden lid via een extern formulier (bijvoorbeeld Google Forms of
+Microsoft Forms). De knop **Word lid** op de site gaat daarheen.
+
+1. Maak het formulier en kopieer de link ervan.
+2. Ga naar **Sponsorteller & instellingen**.
+3. Plak de link bij **Link naar aanmeldformulier Club van 100** en klik op
+   **Save**.
+
+Eén formulier is genoeg: de knop op de Engelse site gaat naar hetzelfde
+formulier. Zolang er geen link staat, zie je "Het aanmeldformulier volgt
+binnenkort!".
+
 ## 🪵 Iemand toevoegen aan de club van 100
 
 1. Ga naar **Club van 100 (leden)**.

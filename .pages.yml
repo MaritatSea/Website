@@ -100,6 +100,10 @@ content:
         label: Link naar je GoFundMe
         type: string
         description: "Plak hier de link (https://www.gofundme.com/...). Zolang dit leeg is staat er 'Link volgt binnenkort'."
+      - name: clubFormulierUrl
+        label: Link naar aanmeldformulier Club van 100
+        type: string
+        description: "Het formulier waarmee mensen lid worden (bijv. Google Forms of Microsoft Forms). De knop 'Word lid' gaat hierheen. Zolang dit leeg is staat er 'Het aanmeldformulier volgt binnenkort!'."
       - name: schipVolgenUrl
         label: Link om het schip te volgen
         type: string
@@ -625,8 +629,8 @@ content:
       - name: wordLid
         label: "Word lid"
         type: string
-      - name: doeMeeGofundme
-        label: "Doe mee via GoFundMe"
+      - name: clubFormulierBinnenkort
+        label: "Het aanmeldformulier volgt binnenkort!"
         type: string
       - name: clubVanDe100
         label: "van de 100 leden"

@@ -19,6 +19,7 @@ interface Props {
 const { lang } = Astro.props;
 const { sponsor, ui } = t(lang);
 
+const clubUrl = extUrl(site.clubFormulierUrl);
 const leden = (club.leden as { naam: string; url?: string }[]).filter((l) => l && l.naam);
 const hasSponsors = (sponsorData.sponsors ?? []).some((s) => s && (s.naam || s.logo));
 const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
@@ -74,10 +75,12 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
         <h2><span class="b-icon wood"><Icon name="vrienden" size={30} /></span>{sponsor.clubTitel}</h2>
         <div class="prose" set:html={fixHtml(sponsor.clubTekst)} />
         {
-          site.gofundmeUrl && (
-            <a href={site.gofundmeUrl} class="btn btn-primary" target="_blank" rel="noopener">
-              {ui.doeMeeGofundme}
+          clubUrl ? (
+            <a href={clubUrl} class="btn btn-primary" target="_blank" rel="noopener">
+              {ui.wordLid} →
             </a>
+          ) : (
+            <p class="soon">{ui.clubFormulierBinnenkort}</p>
           )
         }
       </div>

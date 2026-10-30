@@ -11,6 +11,7 @@ export interface Site {
   organisatieUrl?: string;
   schipVolgenUrl?: string;
   gofundmeUrl?: string;
+  clubFormulierUrl?: string;
   vertrekdatum?: string;
   terugkomstdatum?: string;
   doelbedrag?: number;
