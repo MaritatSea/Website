@@ -51,135 +51,111 @@ content:
           path: nieuws
 
   # ---------------------------------------------------------------
-  - name: home
-    label: 🏠 Teksten homepagina
+  - name: site
+    label: 💶 Sponsorteller & instellingen
     type: file
-    path: src/data/home.json
+    path: src/data/site.json
     format: json
     fields:
-      - name: heroLabel
-        label: "Bovenaan: klein label"
-        type: string
-        description: Het kleine witte labeltje boven je naam. Mag leeg.
-      - name: heroTagline
-        label: "Bovenaan: slogan"
-        type: string
-      - name: heroIntro
-        label: "Bovenaan: introductie"
-        type: text
-      - name: heroKnopSponsor
-        label: "Bovenaan: tekst sponsorknop"
-        type: string
-      - name: heroKnopNieuws
-        label: "Bovenaan: tekst nieuwsknop"
-        type: string
-      - name: overTitel
-        label: "Over mij: titel"
-        type: string
-      - name: overTekst
-        label: "Over mij: tekst"
-        type: rich-text
+      - name: opgehaald
+        label: Al opgehaald (€)
+        type: number
+        description: Pas dit aan als er geld binnenkomt. Het bootje in de voortgangsbalk vaart dan verder!
+      - name: doelbedrag
+        label: Doelbedrag (€)
+        type: number
+        description: Zet op 0 om de voortgangsbalk te verbergen.
+      - name: vertrekdatum
+        label: Vertrek (datum en tijd)
+        type: date
+        description: "Hier telt de klok op de homepagina naartoe. Nederlandse tijd. Tijdens de reis staat er 'Dag 12 op zee'."
         options:
-          format: html
-      - name: reisTitel
-        label: "De reis: titel"
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm"
+      - name: terugkomstdatum
+        label: Terugkomstdatum (optioneel)
+        type: date
+        description: Na deze dag staat er 'Weer veilig thuis!' in plaats van 'Dag … op zee'.
+        options:
+          format: yyyy-MM-dd
+      - name: aftelTekst
+        label: Tekst boven de aftelklok
         type: string
-      - name: reisSubtitel
-        label: "De reis: ondertitel"
+      - name: gofundmeUrl
+        label: Link naar je GoFundMe
         type: string
-      - name: reisPunten
-        label: "De reis: blokjes"
-        description: De kaartjes met een icoon. Je kunt ze toevoegen, verwijderen en van volgorde veranderen.
+        description: "Plak hier de link (https://www.gofundme.com/...). Zolang dit leeg is staat er 'Link volgt binnenkort'."
+      - name: schipVolgenUrl
+        label: Link om het schip te volgen
+        type: string
+      - name: email
+        label: E-mailadres (optioneel)
+        type: string
+        description: Wordt onderaan de site en bij zakelijke sponsoring getoond.
+      - name: instagram
+        label: Instagram-link (optioneel)
+        type: string
+        description: "Bijvoorbeeld https://www.instagram.com/maritatsea"
+      - name: iban
+        label: IBAN voor direct overmaken (optioneel)
+        type: string
+        description: Laat leeg als mensen alleen via GoFundMe doneren. Vul je dit in, dan verschijnt er een blok 'Direct overmaken' op de sponsorpagina.
+      - name: tenaamstelling
+        label: Ten name van (bij IBAN)
+        type: string
+      - name: omschrijving
+        label: Omschrijving bij overboeking (bij IBAN)
+        type: string
+      - name: naam
+        label: Je voornaam
+        type: string
+      - name: schip
+        label: Naam van het schip
+        type: string
+      - name: organisatie
+        label: Naam van de organisatie
+        type: string
+      - name: organisatieUrl
+        label: Website van de organisatie
+        type: string
+      - name: footerTekst
+        label: Tekst onderaan de site
+        type: string
+      - name: nieuwsPaginaIntro
+        label: Introductie nieuwspagina
+        type: text
+
+  # ---------------------------------------------------------------
+  - name: club
+    label: 🪵 Club van 100 (leden)
+    type: file
+    path: src/data/club-van-100.json
+    format: json
+    fields:
+      - name: leden
+        label: Leden
+        description: Iedere naam die je toevoegt komt op de sponsorpagina, en er gaat een patrijspoort "aan".
         type: object
         list:
-          min: 1
-          max: 8
           collapsible:
             collapsed: true
-            summary: "{titel}"
+            summary: "{naam}"
         fields:
-          - name: icoon
-            label: Icoon
-            type: select
-            options:
-              values:
-                - name: schip
-                  label: ⛵ Schip
-                - name: boek
-                  label: 📖 Boek
-                - name: kompas
-                  label: 🧭 Kompas
-                - name: wereld
-                  label: 🌍 Wereldbol
-                - name: anker
-                  label: ⚓ Anker
-                - name: golf
-                  label: 🌊 Golven
-                - name: hart
-                  label: 💙 Hartje
-          - name: titel
-            label: Titel
+          - name: naam
+            label: Naam
             type: string
-          - name: tekst
-            label: Tekst
-            type: text
-      - name: sponsorTitel
-        label: "Sponsoren: titel"
-        type: string
-      - name: sponsorTekst
-        label: "Sponsoren: tekst"
-        type: rich-text
-        options:
-          format: html
-          media: false
-      - name: bankTitel
-        label: "Overboeken: titel"
-        type: string
-      - name: bankTekst
-        label: "Overboeken: tekst boven het rekeningnummer"
-        type: string
-      - name: bankBedankje
-        label: "Overboeken: bedankje onderaan"
-        type: string
-      - name: borrelplankTitel
-        label: "Borrelplank: titel"
-        type: string
-      - name: borrelplankTekst
-        label: "Borrelplank: tekst"
-        type: rich-text
-        options:
-          format: html
-          media: false
-      - name: borrelplankVanaf
-        label: "Borrelplank: vanaf bedrag (€)"
-        type: number
-        description: Dit bedrag staat in het ronde stempeltje op de foto.
-      - name: borrelplankFoto
-        label: "Borrelplank: foto"
-        type: image
-      - name: sponsorsTitel
-        label: "Sponsorlogo's: titel"
-        type: string
-      - name: sponsorsTekst
-        label: "Sponsorlogo's: tekst"
-        type: text
-      - name: nieuwsTitel
-        label: "Laatste nieuws: titel"
-        type: string
-      - name: nieuwsSubtitel
-        label: "Laatste nieuws: ondertitel"
-        type: string
+            required: true
 
   # ---------------------------------------------------------------
   - name: sponsors
-    label: 🤝 Sponsorlogo's
+    label: 🤝 Sponsorlogo's (bedrijven)
     type: file
     path: src/data/sponsors.json
     format: json
     fields:
       - name: sponsors
         label: Sponsoren
-        description: Bedrijven en organisaties die op de homepagina komen. Sleep ze om de volgorde te veranderen.
+        description: Bedrijven en organisaties die op de site komen. Sleep ze om de volgorde te veranderen.
         type: object
         list:
           collapsible:
@@ -202,64 +178,284 @@ content:
             description: "Bijvoorbeeld https://www.bedrijf.nl. Het logo wordt dan klikbaar."
 
   # ---------------------------------------------------------------
-  - name: site
-    label: ⚙️ Instellingen & sponsorteller
+  - name: home
+    label: "🏠 Pagina: Mijn droom (home)"
     type: file
-    path: src/data/site.json
+    path: src/data/home.json
     format: json
     fields:
-      - name: opgehaald
-        label: Al opgehaald (€)
-        type: number
-        description: Pas dit aan als er geld binnenkomt. Het bootje in de voortgangsbalk vaart dan verder!
-      - name: doelbedrag
-        label: Doelbedrag (€)
-        type: number
-        description: Zet op 0 om de voortgangsbalk te verbergen.
-      - name: iban
-        label: IBAN (rekeningnummer)
+      - name: heroLabel
+        label: "Bovenaan: klein label"
         type: string
-        required: true
-      - name: tenaamstelling
-        label: Ten name van
+        description: Het kleine witte labeltje boven de titel. Mag leeg.
+      - name: heroTitel
+        label: "Bovenaan: titel"
         type: string
-      - name: omschrijving
-        label: Omschrijving bij overboeking
+      - name: heroLead
+        label: "Bovenaan: dikgedrukte zin"
         type: string
-      - name: betaalverzoekUrl
-        label: Link naar betaalverzoek (optioneel)
+      - name: heroTekst
+        label: "Bovenaan: tekst 'Mijn droom'"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: heroKnopSponsor
+        label: "Bovenaan: tekst sponsorknop"
         type: string
-        description: Bijvoorbeeld een Tikkie- of bankbetaalverzoek-link. Er verschijnt dan een extra knop.
-      - name: vertrekdatum
-        label: Vertrekdatum
-        type: date
-        description: Hiermee telt de site af ("nog 42 dagen tot vertrek") en tijdens de reis ("dag 12 op zee").
-      - name: terugkomstdatum
-        label: Terugkomstdatum
-        type: date
-      - name: naam
-        label: Je voornaam
+      - name: heroKnopReis
+        label: "Bovenaan: tekst knop naar de reis"
         type: string
-      - name: schip
-        label: Naam van het schip
+      - name: cijfers
+        label: Cijfers
+        description: De grote cijfers onder de golven (bijv. 12.000 zeemijl).
+        type: object
+        list:
+          max: 6
+          collapsible:
+            collapsed: true
+            summary: "{getal} {label}"
+        fields:
+          - name: getal
+            label: Getal
+            type: string
+          - name: label
+            label: Omschrijving
+            type: string
+      - name: waaromTitel
+        label: "Waarom: titel"
         type: string
-      - name: organisatie
-        label: Naam van de organisatie
-        type: string
-      - name: organisatieUrl
-        label: Website van de organisatie
-        type: string
-      - name: email
-        label: E-mailadres (optioneel)
-        type: string
-        description: Wordt onderaan de site getoond.
-      - name: instagram
-        label: Instagram-link (optioneel)
-        type: string
-        description: "Bijvoorbeeld https://www.instagram.com/maritatsea"
-      - name: footerTekst
-        label: Tekst onderaan de site
-        type: string
-      - name: nieuwsPaginaIntro
-        label: Introductie nieuwspagina
+      - name: waaromPunten
+        label: "Waarom: redenen"
+        description: De kaartjes met redenen. Toevoegen, verwijderen en verslepen kan allemaal.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{tekst}"
+        fields:
+          - &icoon
+            name: icoon
+            label: Icoon
+            type: select
+            options:
+              values:
+                - { name: schip, label: "⛵ Schip" }
+                - { name: stuur, label: "☸️ Stuurwiel" }
+                - { name: kompas, label: "🧭 Kompas" }
+                - { name: anker, label: "⚓ Anker" }
+                - { name: golf, label: "🌊 Golven" }
+                - { name: vlag, label: "🚩 Vlag" }
+                - { name: wereld, label: "🌍 Wereldbol" }
+                - { name: berg, label: "⛰️ Berg" }
+                - { name: boek, label: "📖 Boek" }
+                - { name: pan, label: "🍳 Pan" }
+                - { name: megafoon, label: "📣 Megafoon" }
+                - { name: vrienden, label: "👭 Vrienden" }
+                - { name: hart, label: "💙 Hartje" }
+          - name: tekst
+            label: Tekst
+            type: text
+      - name: waaromAfsluiting
+        label: "Waarom: afsluitende tekst"
         type: text
+      - name: overKnop
+        label: "Knop naar 'Over mij'"
+        type: string
+      - name: reisKnop
+        label: "Knop naar 'De reis'"
+        type: string
+      - name: sponsorKnop
+        label: "Knop naar 'Sponsor mij'"
+        type: string
+      - name: sponsorsTitel
+        label: "Sponsorlogo's: titel"
+        type: string
+      - name: sponsorsTekst
+        label: "Sponsorlogo's: tekst"
+        type: text
+      - name: nieuwsTitel
+        label: "Laatste nieuws: titel"
+        type: string
+      - name: nieuwsSubtitel
+        label: "Laatste nieuws: ondertitel"
+        type: string
+
+  # ---------------------------------------------------------------
+  - name: over
+    label: "🙋‍♀️ Pagina: Over mij"
+    type: file
+    path: src/data/over-mij.json
+    format: json
+    fields:
+      - name: titel
+        label: Titel
+        type: string
+      - name: samenvatting
+        label: Korte tekst op de homepagina
+        type: text
+      - name: foto
+        label: Foto
+        type: image
+        description: Staat op de homepagina én op de pagina 'Over mij'. Een staande foto werkt het best.
+      - name: intro
+        label: Introductie (bovenaan de pagina)
+        type: text
+      - name: weetjes
+        label: Weetjes
+        description: De kleine labeltjes met een emoji.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{emoji} {tekst}"
+        fields:
+          - name: emoji
+            label: Emoji
+            type: string
+          - name: tekst
+            label: Tekst
+            type: string
+      - name: tekst
+        label: Tekst van de pagina
+        type: rich-text
+        options:
+          format: html
+
+  # ---------------------------------------------------------------
+  - name: reis
+    label: "🗺️ Pagina: De reis"
+    type: file
+    path: src/data/de-reis.json
+    format: json
+    fields:
+      - name: titel
+        label: Titel
+        type: string
+      - name: intro
+        label: Introductie
+        description: Staat bovenaan de pagina én op de homepagina.
+        type: text
+      - name: kaartVoetnoot
+        label: Tekstje onder de routekaart
+        type: text
+      - name: onderdelen
+        label: Onderdelen
+        description: "Elk onderdeel (Expedities, School, …) krijgt een eigen blok op de pagina. De korte samenvatting staat op de homepagina."
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titel}"
+        fields:
+          - name: titel
+            label: Titel
+            type: string
+            required: true
+          - *icoon
+          - name: samenvatting
+            label: Korte samenvatting (homepagina)
+            type: text
+          - name: tekst
+            label: Volledige tekst
+            type: rich-text
+            options:
+              format: html
+          - name: afbeelding
+            label: Foto (optioneel)
+            type: image
+      - name: meerInfoTekst
+        label: "Tekst bij 'Volg de reis' (onderaan)"
+        type: text
+
+  # ---------------------------------------------------------------
+  - name: sponsorpagina
+    label: "❤️ Pagina: Sponsor mij"
+    type: file
+    path: src/data/sponsor-mij.json
+    format: json
+    fields:
+      - name: titel
+        label: Titel
+        type: string
+      - name: intro
+        label: Introductie
+        description: Staat op de sponsorpagina én op de homepagina.
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: foto
+        label: Foto
+        type: image
+        description: Staat naast de introductie (homepagina en sponsorpagina).
+      - name: gofundmeTitel
+        label: "GoFundMe: titel"
+        type: string
+      - name: gofundmeSamenvatting
+        label: "GoFundMe: tekst"
+        type: text
+      - name: gofundmeKnop
+        label: "GoFundMe: tekst op de knop"
+        type: string
+      - name: clubTitel
+        label: "Club van 100: titel"
+        type: string
+      - name: clubSamenvatting
+        label: "Club van 100: korte tekst (homepagina)"
+        type: text
+      - name: clubTekst
+        label: "Club van 100: volledige tekst"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: clubFoto
+        label: "Club van 100: foto borrelplank"
+        type: image
+      - name: clubLedenTitel
+        label: "Club van 100: titel boven de ledenlijst"
+        type: string
+      - name: zakelijkTitel
+        label: "Zakelijk: titel"
+        type: string
+      - name: zakelijkSamenvatting
+        label: "Zakelijk: korte tekst (homepagina)"
+        type: text
+      - name: zakelijkTekst
+        label: "Zakelijk: tekst"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: tegenprestaties
+        label: "Zakelijk: tegenprestaties"
+        description: De blokjes met vlaggetjes. Het aantal vlaggetjes loopt vanzelf op.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{bedrag}"
+        fields:
+          - name: bedrag
+            label: Kopje (bijv. 'Vanaf € 1.000')
+            type: string
+          - name: tekst
+            label: Tekst
+            type: text
+      - name: factuurTekst
+        label: "Zakelijk: hoe werkt het (factuur)"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: contactTekst
+        label: "Zakelijk: oproep om contact op te nemen"
+        type: string
+      - name: bankTitel
+        label: "Direct overmaken: titel"
+        type: string
+        description: Dit blok is alleen zichtbaar als er een IBAN is ingevuld bij de instellingen.
+      - name: bankTekst
+        label: "Direct overmaken: tekst"
+        type: string

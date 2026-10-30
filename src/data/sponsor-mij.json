@@ -1,0 +1,34 @@
+{
+  "titel": "Sponsor mij",
+  "intro": "<p>Om mijn droom waar te maken moet ik <strong>€ 32.000</strong> bij elkaar krijgen. Dat lukt mij niet alleen. Wil jij ook een steentje bijdragen? Zowel als bedrijf of als particulier kan dat. Je kan een bedrag doneren via GoFundMe of je kan lid worden van de club van 100. Je kan mij natuurlijk ook zakelijk sponsoren.</p><p>Alles wat aan mij gedoneerd wordt, gaat volledig naar School at Sea.</p>",
+  "foto": "/images/marit-thalassa.jpg",
+  "gofundmeTitel": "GoFundMe",
+  "gofundmeSamenvatting": "Iedere euro die gedoneerd wordt brengt mij een stapje dichter bij mijn doel, dus met iedere euro ben ik super blij.",
+  "gofundmeKnop": "Doneer via GoFundMe",
+  "clubTitel": "Club van 100",
+  "clubSamenvatting": "Ik zoek 100 mensen die minimaal € 100 willen bijdragen. Als bedankje krijg je een handgemaakte borrelplank met de Thalassa erop!",
+  "clubTekst": "<p>Mijn droom is groot en daarom ben ik op zoek naar een aantal grote sponsoren. Ik zoek 100 mensen die minimaal € 100 willen bijdragen aan mijn project. Ik vind het leuk om jullie namen te vermelden op mijn website onder het kopje 'Club van 100'. Doe je mee?</p><p>Alle leden van de club van 100 ontvangen van mij een <strong>handgemaakte borrelplank</strong> met daarop een tekening van de Thalassa, het schip waarmee we onze reis gaan maken.</p>",
+  "clubFoto": "/images/borrelplank.jpg",
+  "clubLedenTitel": "Leden van de club van 100",
+  "zakelijkTitel": "Zakelijke sponsoring",
+  "zakelijkSamenvatting": "Ook bedrijven kunnen mij sponsoren. Daar staat natuurlijk iets tegenover, zoals een vermelding of zelfs jullie vlag in de mast!",
+  "zakelijkTekst": "<p>Ook bedrijven kunnen mij sponsoren. Ik kom graag langs om te vertellen over mijn droom.</p><p>Naast het feit dat ik natuurlijk heel erg blij ben met iedere bijdrage die mij dichter bij mijn droom helpt, hoort bij sponsoren natuurlijk ook een tegenprestatie.</p>",
+  "tegenprestaties": [
+    {
+      "bedrag": "Iedere sponsor",
+      "tekst": "Een vermelding op mijn website en op de website van School at Sea. In overleg schrijf ik een stukje over mijn project voor jullie website of nieuwsbrief."
+    },
+    {
+      "bedrag": "Vanaf € 1.000",
+      "tekst": "Jullie vlag gaat mee (max. 1 × 1,5 meter) en wordt bij vertrek uit en aankomst in Nederland in de want gehesen."
+    },
+    {
+      "bedrag": "Vanaf € 5.000",
+      "tekst": "Jullie vlag wordt in iedere haven gehesen!"
+    }
+  ],
+  "factuurTekst": "<p>Bedrijven die mij willen helpen ontvangen een sponsorfactuur van School at Sea. Op deze factuur wordt 21% btw in rekening gebracht. Het bedrag wordt overgemaakt naar School at Sea en wordt door School at Sea afgetrokken van het door mij te betalen bedrag voor de reis. Mocht de reis om wat voor reden dan ook voor mij niet door kunnen gaan, dan neemt School at Sea contact op om te bespreken wat er met het geld moet gebeuren.</p>",
+  "contactTekst": "Interesse? Stuur me een berichtje, dan kom ik graag langs!",
+  "bankTitel": "Direct overmaken",
+  "bankTekst": "Liever direct overmaken? Dat kan op:"
+}

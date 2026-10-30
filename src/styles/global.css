@@ -140,6 +140,16 @@ h2 {
   background: var(--white);
 }
 
+.btn-light {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: var(--shadow);
+}
+
+.btn-light:hover {
+  background: var(--foam);
+}
+
 /* Kaarten */
 .card {
   background: var(--white);

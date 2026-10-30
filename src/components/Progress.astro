@@ -1,0 +1,150 @@
+---
+import { formatEuro } from '../lib/utils';
+import site from '../data/site.json';
+
+/** Voortgangsbalk met een bootje dat naar het opgehaalde percentage vaart. */
+interface Props {
+  light?: boolean;
+}
+
+const { light = false } = Astro.props;
+const goal = Number(site.doelbedrag) || 0;
+const raised = Number(site.opgehaald) || 0;
+const pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
+---
+
+{
+  goal > 0 && (
+    <div class:list={['progress', { light }]} data-reveal data-progress style={`--pct:${pct}`}>
+      <div class="labels">
+        <span>
+          <strong>{formatEuro(raised)}</strong> opgehaald
+        </span>
+        <span>
+          doel: <strong>{formatEuro(goal)}</strong>
+        </span>
+      </div>
+      <div
+        class="track"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow={pct}
+        aria-label="Opgehaald bedrag"
+      >
+        <div class="fill" />
+        <svg class="boat" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 4v30" stroke="currentColor" stroke-width="2.5" />
+          <path d="M26 6l14 24H26z" fill="#fff" stroke="#0f2d45" stroke-width="2" stroke-linejoin="round" />
+          <path d="M22 10 11 30h11z" fill="#eaf5f8" stroke="#0f2d45" stroke-width="2" stroke-linejoin="round" />
+          <path d="M5 34h38l-6 8H11z" fill="#4a8fb8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <p class="pct">
+        {raised > 0 ? `${pct}% van mijn doel bij elkaar gezeild!` : 'Help jij mij de eerste zeemijlen te varen?'}
+      </p>
+    </div>
+  )
+}
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-progress]').forEach((el) => {
+    new IntersectionObserver(
+      ([e], obs) => {
+        if (e.isIntersecting) {
+          el.classList.add('go');
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.4 },
+    ).observe(el);
+  });
+</script>
+
+<style>
+  .progress {
+    max-width: 760px;
+    margin: 0 auto 3rem;
+    color: #e3f0f5;
+    --track: rgba(255, 255, 255, 0.12);
+    --strong: #fff;
+    --mast: #eaf5f8;
+  }
+
+  .progress.light {
+    color: var(--text);
+    --track: var(--sky);
+    --strong: var(--navy);
+    --mast: #0f2d45;
+  }
+
+  .labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+  }
+
+  .labels strong {
+    color: var(--strong);
+    font-size: 1.2em;
+  }
+
+  .track {
+    position: relative;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--track);
+    margin-top: 48px;
+  }
+
+  .fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    border-radius: inherit;
+    background: repeating-linear-gradient(-45deg, var(--sea-2) 0 12px, var(--sea) 12px 24px);
+    background-size: 34px 34px;
+    animation: stripes 1.2s linear infinite;
+    transition: width 2.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  @keyframes stripes {
+    to {
+      background-position: 34px 0;
+    }
+  }
+
+  .boat {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    width: 52px;
+    color: var(--mast);
+    transform: translateX(-30%);
+    transition: left 2.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: bob-boat 2.6s ease-in-out infinite;
+  }
+
+  @keyframes bob-boat {
+    50% {
+      bottom: 10px;
+      rotate: 4deg;
+    }
+  }
+
+  .progress.go .fill,
+  :global(.no-js) .fill {
+    width: calc(var(--pct) * 1%);
+  }
+
+  .progress.go .boat,
+  :global(.no-js) .boat {
+    left: calc(var(--pct) * 1%);
+  }
+
+  .pct {
+    text-align: center;
+    margin: 0.75rem 0 0;
+    font-weight: 700;
+  }
+</style>

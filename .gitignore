@@ -4,5 +4,7 @@ dist/
 .DS_Store
 .env
 
-# Origineel bevat GPS-locatie (EXIF); opgeschoonde versie staat in public/images/
+# Originelen bevatten GPS-locatie (EXIF); opgeschoonde versie staat in public/images/
 _bootstrap_assets/borrelplank.jpeg
+_bootstrap_assets/Marit_kayak.jpeg
+_bootstrap_assets/Marit_Thalassa_3.jpeg

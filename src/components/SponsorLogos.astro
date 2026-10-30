@@ -1,0 +1,68 @@
+---
+import sponsorData from '../data/sponsors.json';
+import { u } from '../lib/utils';
+
+const sponsors = (sponsorData.sponsors ?? []).filter((s) => s && (s.naam || s.logo));
+---
+
+{
+  sponsors.length > 0 && (
+    <ul class="sponsor-grid">
+      {sponsors.map((s, i) => {
+        const inner = s.logo ? <img src={u(s.logo)} alt={s.naam} loading="lazy" /> : <span>{s.naam}</span>;
+        return (
+          <li data-reveal style={`transition-delay:${i * 80}ms`}>
+            {s.url ? (
+              <a href={s.url} target="_blank" rel="noopener" title={s.naam}>
+                {inner}
+              </a>
+            ) : (
+              <div title={s.naam}>{inner}</div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  )
+}
+
+<style>
+  .sponsor-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  li > * {
+    display: grid;
+    place-items: center;
+    width: 240px;
+    height: 140px;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease;
+  }
+
+  li > a:hover {
+    transform: translateY(-4px);
+  }
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  span {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--navy);
+    text-align: center;
+  }
+</style>

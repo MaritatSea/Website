@@ -1,0 +1,172 @@
+---
+/**
+ * Aftelklok naar het vertrek. Tijdens de reis: "Dag X op zee",
+ * na de terugkomstdatum: "Weer veilig thuis".
+ */
+import site from '../data/site.json';
+import { amsterdamDate } from '../lib/utils';
+
+const start = amsterdamDate(site.vertrekdatum);
+const end = amsterdamDate(site.terugkomstdatum);
+// Terugkomstdatum geldt tot het eind van die dag
+const endIso = end ? new Date(end.getTime() + 86400000).toISOString() : '';
+
+const label = start
+  ? start.toLocaleString('nl-NL', {
+      timeZone: 'Europe/Amsterdam',
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+  : '';
+---
+
+{
+  start && (
+    <div class="countdown" data-countdown data-start={start.toISOString()} data-end={endIso}>
+      <p class="title" data-cd-title>
+        {site.aftelTekst}
+      </p>
+      <div class="units" data-cd-units>
+        {[
+          ['d', 'dagen'],
+          ['h', 'uur'],
+          ['m', 'min'],
+          ['s', 'sec'],
+        ].map(([k, l]) => (
+          <div class="unit">
+            <span class="num" data-cd={k}>
+              –
+            </span>
+            <span class="lbl">{l}</span>
+          </div>
+        ))}
+      </div>
+      <p class="when">Vertrek: {label}</p>
+    </div>
+  )
+}
+
+<script>
+  const el = document.querySelector<HTMLElement>('[data-countdown]');
+  if (el) {
+    const start = new Date(el.dataset.start!).getTime();
+    const end = el.dataset.end ? new Date(el.dataset.end).getTime() : null;
+    const title = el.querySelector<HTMLElement>('[data-cd-title]')!;
+    const units = el.querySelector<HTMLElement>('[data-cd-units]')!;
+    const set = (k: string, v: number) => {
+      const n = el.querySelector<HTMLElement>(`[data-cd="${k}"]`);
+      const s = k === 'd' ? String(v) : String(v).padStart(2, '0');
+      if (n && n.textContent !== s) {
+        n.textContent = s;
+        n.classList.remove('tick');
+        void n.offsetWidth;
+        n.classList.add('tick');
+      }
+    };
+    const update = () => {
+      const now = Date.now();
+      if (now < start) {
+        let t = Math.floor((start - now) / 1000);
+        set('d', Math.floor(t / 86400));
+        t %= 86400;
+        set('h', Math.floor(t / 3600));
+        t %= 3600;
+        set('m', Math.floor(t / 60));
+        set('s', t % 60);
+        return true;
+      }
+      units.hidden = true;
+      el.classList.add('done');
+      if (!end || now < end) {
+        const day = Math.floor((now - start) / 86400000) + 1;
+        title.innerHTML = `Dag <strong>${day}</strong> op zee 🌊`;
+      } else {
+        title.textContent = 'Weer veilig thuis! ⚓';
+      }
+      return false;
+    };
+    if (update()) {
+      const timer = setInterval(() => {
+        if (!update()) clearInterval(timer);
+      }, 1000);
+    }
+  }
+</script>
+
+<style>
+  .countdown {
+    margin-top: 1.75rem;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title {
+    margin: 0;
+    font-weight: 800;
+    color: var(--navy);
+  }
+
+  .title :global(strong) {
+    font-size: 1.4em;
+    color: var(--sea);
+  }
+
+  .units {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 4.2rem;
+    padding: 0.55rem 0.5rem 0.4rem;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 14px;
+    box-shadow: 0 6px 16px -10px rgba(15, 45, 69, 0.45);
+  }
+
+  .num {
+    font-size: 1.7rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--navy);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .num:global(.tick) {
+    animation: tick 0.45s ease;
+  }
+
+  @keyframes tick {
+    from {
+      transform: translateY(-6px);
+      opacity: 0.3;
+    }
+  }
+
+  .lbl {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sea);
+  }
+
+  .when {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .done .when {
+    display: none;
+  }
+</style>

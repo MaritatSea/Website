@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import over from '../data/over-mij.json';
+import { u, fixHtml } from '../lib/utils';
+---
+
+<Layout title={over.titel} description={over.samenvatting} image={over.foto || undefined}>
+  <PageHero title={over.titel} intro={over.intro} />
+
+  <section class="section">
+    <div class="container layout">
+      <aside class="side" data-reveal>
+        {
+          over.foto && (
+            <div class="polaroid">
+              <img src={u(over.foto)} alt="Marit" width="1050" height="1400" />
+            </div>
+          )
+        }
+        {
+          over.weetjes?.length > 0 && (
+            <ul class="facts">
+              {over.weetjes.map((w) => (
+                <li>
+                  <span aria-hidden="true">{w.emoji}</span>
+                  {w.tekst}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </aside>
+
+      <div class="prose body" data-reveal set:html={fixHtml(over.tekst)} />
+    </div>
+
+    <div class="container cta" data-reveal>
+      <p>Benieuwd naar de reis die ik ga maken?</p>
+      <div class="cta-actions">
+        <a href={u('/de-reis/')} class="btn btn-primary">Over de reis →</a>
+        <a href={u('/sponsor-mij/')} class="btn btn-ghost">Sponsor mij</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(240px, 340px) 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .side {
+    position: sticky;
+    top: 100px;
+  }
+
+  .polaroid {
+    background: #fff;
+    padding: 0.9rem 0.9rem 3rem;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    rotate: -3deg;
+    transition: rotate 0.5s ease;
+  }
+
+  .polaroid:hover {
+    rotate: 0deg;
+  }
+
+  .polaroid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+
+  .facts {
+    list-style: none;
+    padding: 0;
+    margin: 2.25rem 0 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .facts li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    background: var(--foam);
+    border-radius: 12px;
+    padding: 0.6rem 0.9rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .facts span {
+    font-size: 1.4rem;
+  }
+
+  .body {
+    max-width: 680px;
+  }
+
+  .body :global(h2) {
+    font-size: 1.5rem;
+    color: var(--sea);
+  }
+
+  .cta {
+    margin-top: 4rem;
+    text-align: center;
+    background: var(--foam);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+
+  .cta p {
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 760px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .side {
+      position: static;
+      max-width: 300px;
+      margin-inline: auto;
+    }
+  }
+</style>

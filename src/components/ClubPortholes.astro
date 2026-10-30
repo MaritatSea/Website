@@ -1,0 +1,84 @@
+---
+/** 100 patrijspoorten: elk lid van de club van 100 doet er één "aan". */
+import club from '../data/club-van-100.json';
+
+const leden = (club.leden ?? []).filter((l) => l && l.naam);
+const count = Math.min(100, leden.length);
+---
+
+<div class="club" data-reveal data-club>
+  <ol class="holes" aria-hidden="true">
+    {Array.from({ length: 100 }, (_, i) => <li class:list={{ on: i < count }} style={`--i:${i}`} />)}
+  </ol>
+  <p class="count">
+    <strong>{count}</strong> van de 100 leden
+    {count < 100 ? <span> · doe jij ook mee?</span> : <span> · de club is vol, dankjewel! 🎉</span>}
+  </p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-club]').forEach((el) => {
+    new IntersectionObserver(
+      ([e], obs) => {
+        if (e.isIntersecting) {
+          el.classList.add('go');
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    ).observe(el);
+  });
+</script>
+
+<style>
+  .holes {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    gap: 6px;
+    max-width: 520px;
+  }
+
+  li {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--foam);
+    border: 2px solid #b8cfd9;
+    box-shadow: inset 0 2px 3px rgba(15, 45, 69, 0.15);
+  }
+
+  li.on {
+    transition:
+      background 0.4s ease,
+      border-color 0.4s ease,
+      transform 0.4s ease;
+    transition-delay: calc(var(--i) * 40ms);
+  }
+
+  .go li.on,
+  :global(.no-js) li.on {
+    background: radial-gradient(circle at 35% 35%, #ffe9a8, #f2b544);
+    border-color: var(--wood);
+    transform: scale(1.08);
+  }
+
+  .count {
+    text-align: center;
+    margin: 0.9rem 0 0;
+    color: var(--muted);
+  }
+
+  .count strong {
+    font-size: 1.4em;
+    color: var(--navy);
+  }
+
+  @media (max-width: 480px) {
+    .holes {
+      grid-template-columns: repeat(10, 1fr);
+      max-width: 280px;
+    }
+  }
+</style>

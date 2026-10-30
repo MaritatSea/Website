@@ -31,12 +31,16 @@ BASE_PATH=/maritatasea npm run preview   # http://localhost:4321/maritatasea/
 | Pad | Inhoud |
 | --- | --- |
 | `src/content/nieuws/*.md` | Nieuwsberichten (frontmatter + HTML-body) |
-| `src/data/home.json` | Alle teksten van de homepagina |
-| `src/data/site.json` | Instellingen: IBAN, doelbedrag, opgehaald, datums |
+| `src/data/home.json` | Homepagina: Mijn droom, cijfers, Waarom wil ik mee |
+| `src/data/over-mij.json` | Pagina Over mij (+ samenvatting op home) |
+| `src/data/de-reis.json` | Pagina De reis met onderdelen (+ samenvattingen op home) |
+| `src/data/sponsor-mij.json` | Pagina Sponsor mij: GoFundMe, Club van 100, zakelijk |
+| `src/data/club-van-100.json` | Namen van de leden van de Club van 100 |
+| `src/data/site.json` | Instellingen: doelbedrag, opgehaald, GoFundMe-link, IBAN (optioneel) |
 | `src/data/sponsors.json` | Sponsorlogo's |
 | `public/media/` | Uploads via het CMS |
 | `public/images/` | Vaste afbeeldingen (logo, Thalassa-tekening, borrelplank) |
-| `_bootstrap_assets/` | Originele bronbestanden (logo's, XCF, foto) |
+| `_bootstrap_assets/` | Originele bronbestanden (logo's, XCF, teksten). Foto's met GPS-data staan in `.gitignore` |
 
 ## Eenmalig online zetten
 
@@ -58,11 +62,10 @@ output `dist`). Ook dan publiceert elke CMS-wijziging automatisch.
 
 ## Nog invullen vóór livegang
 
-In het CMS onder **Instellingen** (of in `src/data/site.json`):
+In het CMS onder **Sponsorteller & instellingen** (of in `src/data/site.json`):
 
-- [ ] **IBAN** en **ten name van** (staan nu op voorbeeldwaarden!)
-- [ ] **Doelbedrag** en **al opgehaald** (nu voorbeeldwaarden 5000 / 350)
-- [ ] Vertrek- en terugkomstdatum
-- [ ] Naam en website van de organisatie, e-mail, Instagram
-- [ ] Teksten op de homepagina nalopen (vooral "Over mij")
+- [ ] Link naar de GoFundMe
+- [ ] Al opgehaald bedrag
+- [ ] E-mailadres (wordt getoond bij zakelijke sponsoring) en eventueel Instagram
+- [ ] Eventueel IBAN voor direct overmaken (leeg = blok verborgen)
 - [ ] Website van ForKandle Solutions bij de sponsor

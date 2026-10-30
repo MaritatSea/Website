@@ -21,6 +21,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(u(image), Astro.site);
 const path = Astro.url.pathname;
 const year = new Date().getFullYear();
+
+const nav = [
+  { href: '/', label: 'Mijn droom' },
+  { href: '/over-mij/', label: 'Over mij' },
+  { href: '/de-reis/', label: 'De reis' },
+  { href: '/nieuws/', label: 'Nieuws' },
+];
+const isCurrent = (href: string) =>
+  href === '/' ? path === u('/') || path === u('') : path.startsWith(u(href.replace(/\/$/, '')));
 ---
 
 <!doctype html>
@@ -60,11 +69,14 @@ const year = new Date().getFullYear();
         </button>
 
         <nav id="menu" class="nav" data-menu>
-          <a href={u('/#over')}>Over mij</a>
-          <a href={u('/#reis')}>De reis</a>
-          <a href={u('/#sponsoren')}>Sponsoren</a>
-          <a href={u('/nieuws/')} aria-current={path.startsWith(u('/nieuws')) ? 'page' : undefined}>Nieuws</a>
-          <a href={u('/#sponsor')} class="btn btn-primary nav-cta">Sponsor mij</a>
+          {
+            nav.map((item) => (
+              <a href={u(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            ))
+          }
+          <a href={u('/sponsor-mij/')} class="btn btn-primary nav-cta">Sponsor mij</a>
         </nav>
       </div>
     </header>
@@ -88,9 +100,9 @@ const year = new Date().getFullYear();
             {site.footerTekst && <p>{site.footerTekst}</p>}
           </div>
           <nav class="footer-links" aria-label="Footer">
-            <a href={u('/')}>Home</a>
-            <a href={u('/nieuws/')}>Nieuws</a>
-            <a href={u('/#sponsor')}>Sponsor mij</a>
+            {nav.map((item) => <a href={u(item.href)}>{item.label}</a>)}
+            <a href={u('/sponsor-mij/')}>Sponsor mij</a>
+            {site.organisatieUrl && <a href={site.organisatieUrl}>{site.organisatie}</a>}
             {site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}
             {site.instagram && <a href={site.instagram}>Instagram</a>}
           </nav>

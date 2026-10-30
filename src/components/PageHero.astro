@@ -1,0 +1,54 @@
+---
+import Waves from './Waves.astro';
+
+interface Props {
+  title: string;
+  intro?: string | null;
+}
+
+const { title, intro } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container">
+    <h1 class="script">{title}</h1>
+    {intro && <p class="intro">{intro}</p>}
+    <slot />
+  </div>
+  <Waves
+    colors={['rgba(74,143,184,0.4)', 'rgba(42,109,151,0.45)', 'rgba(23,61,92,0.5)', '#ffffff']}
+    height="clamp(50px, 8vw, 100px)"
+  />
+</section>
+
+<style>
+  .page-hero {
+    margin-top: -72px;
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    background: linear-gradient(180deg, #a9d3e0, var(--sky) 60%, var(--foam));
+    text-align: center;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: clamp(3.2rem, 10vw, 6rem);
+    font-weight: 400;
+    margin-bottom: 0.2em;
+    animation: rise 0.9s ease both;
+  }
+
+  .intro {
+    max-width: 680px;
+    margin: 0 auto 1rem;
+    font-weight: 600;
+    font-size: 1.15rem;
+    animation: rise 0.9s 0.15s ease both;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+</style>
