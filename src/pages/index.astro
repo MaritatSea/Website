@@ -6,7 +6,7 @@ import NewsCard from '../components/NewsCard.astro';
 import site from '../data/site.json';
 import home from '../data/home.json';
 import sponsorData from '../data/sponsors.json';
-import { formatEuro, getNews } from '../lib/utils';
+import { formatEuro, getNews, u, fixHtml } from '../lib/utils';
 
 const news = (await getNews()).slice(0, 3);
 const sponsors = (sponsorData.sponsors ?? []).filter((s) => s && (s.naam || s.logo));
@@ -42,7 +42,7 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
           <a href="#sponsor" class="btn btn-primary">
             <Icon name="hart" size={22} /> {home.heroKnopSponsor}
           </a>
-          <a href="/nieuws/" class="btn btn-ghost">{home.heroKnopNieuws}</a>
+          <a href={u('/nieuws/')} class="btn btn-ghost">{home.heroKnopNieuws}</a>
         </div>
         <p
           class="countdown"
@@ -57,7 +57,7 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
       <div class="hero-ship">
         <img
           class="ship"
-          src="/images/thalassa.webp"
+          src={u('/images/thalassa.webp')}
           alt={`Tekening van de ${site.schip}, het zeilschip waarmee ik de reis maak`}
           width="1400"
           height="1058"
@@ -78,10 +78,10 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
     <div class="container about-grid">
       <div class="about-text" data-reveal>
         <h2 class="script">{home.overTitel}</h2>
-        <div class="prose" set:html={home.overTekst} />
+        <div class="prose" set:html={fixHtml(home.overTekst)} />
       </div>
       <div class="about-logo" data-reveal>
-        <img src="/images/logo-marit-at-sea.webp" alt="Logo Marit at Sea" width="900" height="888" loading="lazy" />
+        <img src={u('/images/logo-marit-at-sea.webp')} alt="Logo Marit at Sea" width="900" height="888" loading="lazy" />
       </div>
     </div>
   </section>
@@ -124,7 +124,7 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
     <div class="container">
       <div class="section-title light" data-reveal>
         <h2>{home.sponsorTitel}</h2>
-        <div class="prose" set:html={home.sponsorTekst} />
+        <div class="prose" set:html={fixHtml(home.sponsorTekst)} />
       </div>
 
       {
@@ -187,7 +187,7 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
         <div class="card plank" data-reveal>
           <div class="plank-img">
             {home.borrelplankFoto && (
-              <img src={home.borrelplankFoto} alt="Eikenhouten borrelplank met een gravure van de Thalassa" loading="lazy" />
+              <img src={u(home.borrelplankFoto)} alt="Eikenhouten borrelplank met een gravure van de Thalassa" loading="lazy" />
             )}
             <span class="stamp">
               <small>vanaf</small>
@@ -195,7 +195,7 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
             </span>
           </div>
           <h3>{home.borrelplankTitel}</h3>
-          <div class="prose" set:html={home.borrelplankTekst} />
+          <div class="prose" set:html={fixHtml(home.borrelplankTekst)} />
         </div>
       </div>
     </div>
@@ -219,7 +219,7 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
           <ul class="sponsor-grid">
             {sponsors.map((s, i) => {
               const inner = s.logo ? (
-                <img src={s.logo} alt={s.naam} loading="lazy" />
+                <img src={u(s.logo)} alt={s.naam} loading="lazy" />
               ) : (
                 <span class="sponsor-name">{s.naam}</span>
               );
@@ -256,7 +256,7 @@ const ibanCompact = (site.iban ?? '').replace(/\s+/g, '');
             ))}
           </div>
           <p class="center">
-            <a href="/nieuws/" class="btn btn-ghost">
+            <a href={u('/nieuws/')} class="btn btn-ghost">
               Alle berichten
             </a>
           </p>

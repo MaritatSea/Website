@@ -1,5 +1,18 @@
 import { getCollection } from 'astro:content';
 
+/** Basispad van de site: '' bij een eigen domein, '/repo' op github.io. */
+export const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+/** Zet het basispad voor een intern pad (bijv. '/media/foto.jpg'). */
+export const u = (path?: string | null) =>
+  path && path.startsWith('/') && !path.startsWith('//') && !path.startsWith(base + '/')
+    ? base + path
+    : (path ?? '');
+
+/** Idem voor alle src/href-links in HTML uit de editor. */
+export const fixHtml = (html?: string | null) =>
+  base ? (html ?? '').replace(/\b(src|href)="\/(?!\/)/g, `$1="${base}/`) : (html ?? '');
+
 export const formatDate = (d: Date) =>
   d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 

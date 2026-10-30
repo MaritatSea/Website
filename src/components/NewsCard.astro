@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { formatDate, excerpt } from '../lib/utils';
+import { formatDate, excerpt, u } from '../lib/utils';
 
 interface Props {
   post: CollectionEntry<'nieuws'>;
@@ -12,14 +12,14 @@ const summary = samenvatting || excerpt(post.body ?? '');
 ---
 
 <article class="news-card" data-reveal>
-  <a href={`/nieuws/${post.id}/`} class="news-link">
+  <a href={u(`/nieuws/${post.id}/`)} class="news-link">
     <div class="news-img">
       {
         cover ? (
-          <img src={cover} alt="" loading="lazy" />
+          <img src={u(cover)} alt="" loading="lazy" />
         ) : (
           <div class="news-placeholder" aria-hidden="true">
-            <img src="/images/thalassa.webp" alt="" loading="lazy" />
+            <img src={u('/images/thalassa.webp')} alt="" loading="lazy" />
           </div>
         )
       }

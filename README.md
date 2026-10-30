@@ -18,6 +18,14 @@ npm run dev      # http://localhost:4321
 npm run build    # bouwt naar dist/
 ```
 
+Lokaal bouwen zoals op github.io (met basispad):
+
+```sh
+rm -rf .astro dist
+BASE_PATH=/maritatasea npm run build
+BASE_PATH=/maritatasea npm run preview   # http://localhost:4321/maritatasea/
+```
+
 ## Waar staat wat?
 
 | Pad | Inhoud |
@@ -38,9 +46,8 @@ npm run build    # bouwt naar dist/
 3. **Domein**: koppel `www.maritatsea.nl` onder Settings → Pages → *Custom domain*
    en zet bij je domeinprovider een `CNAME`-record `www` → `<gebruiker>.github.io`
    (plus de A-records van GitHub voor het kale domein). Vink *Enforce HTTPS* aan.
-   > De site gaat uit van een eigen domein (paden beginnen met `/`). Zonder eigen
-   > domein moet je `base: '/marit-at-sea'` in `astro.config.mjs` zetten, maar
-   > dan werken afbeeldingen uit de editor niet goed. Een eigen domein is dus sterk aanbevolen.
+   > Het basispad (`/maritatasea` op github.io, of niets bij een eigen domein) wordt
+   > in de workflow automatisch bepaald via `actions/configure-pages`. Je hoeft niets aan te passen.
 4. **Pages CMS**: log in op [app.pagescms.org](https://app.pagescms.org) met GitHub,
    installeer de Pages CMS GitHub-app op de repo en open hem.
 5. **Marit uitnodigen**: in Pages CMS → *Settings* → *Collaborators*, haar

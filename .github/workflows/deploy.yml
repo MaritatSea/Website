@@ -21,7 +21,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      # Geeft het juiste adres: /repo-naam op github.io, of leeg bij een eigen domein
+      - id: pages
+        uses: actions/configure-pages@v6
       - uses: withastro/action@v6
+        env:
+          SITE_URL: ${{ steps.pages.outputs.origin }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
   deploy:
     needs: build
     runs-on: ubuntu-latest

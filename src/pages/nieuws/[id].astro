@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Waves from '../../components/Waves.astro';
-import { formatDate, excerpt, getNews } from '../../lib/utils';
+import { formatDate, excerpt, getNews, u } from '../../lib/utils';
 
 export async function getStaticPaths() {
   const posts = await getNews();
@@ -21,7 +21,7 @@ const { title, date, cover, samenvatting } = post.data;
   <article>
     <header class="post-hero">
       <div class="container narrow">
-        <a href="/nieuws/" class="back">← Alle berichten</a>
+        <a href={u('/nieuws/')} class="back">← Alle berichten</a>
         <time datetime={date.toISOString()}>{formatDate(date)}</time>
         <h1>{title}</h1>
       </div>
@@ -32,7 +32,7 @@ const { title, date, cover, samenvatting } = post.data;
     </header>
 
     <div class="container narrow body">
-      {cover && <img class="cover" src={cover} alt="" />}
+      {cover && <img class="cover" src={u(cover)} alt="" />}
       <div class="prose">
         <Content />
       </div>
@@ -40,7 +40,7 @@ const { title, date, cover, samenvatting } = post.data;
       <nav class="pager" aria-label="Meer berichten">
         {
           older ? (
-            <a href={`/nieuws/${older.id}/`}>
+            <a href={u(`/nieuws/${older.id}/`)}>
               <small>← Vorig bericht</small>
               {older.data.title}
             </a>
@@ -50,7 +50,7 @@ const { title, date, cover, samenvatting } = post.data;
         }
         {
           newer && (
-            <a href={`/nieuws/${newer.id}/`} class="next">
+            <a href={u(`/nieuws/${newer.id}/`)} class="next">
               <small>Volgend bericht →</small>
               {newer.data.title}
             </a>
@@ -60,7 +60,7 @@ const { title, date, cover, samenvatting } = post.data;
 
       <aside class="cta">
         <p><strong>Wil je mij helpen aan boord te komen?</strong></p>
-        <a href="/#sponsor" class="btn btn-primary">Sponsor mij</a>
+        <a href={u('/#sponsor')} class="btn btn-primary">Sponsor mij</a>
       </aside>
     </div>
   </article>
