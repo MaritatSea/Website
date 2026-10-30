@@ -196,6 +196,7 @@ content:
         type: string
       - name: heroTekst
         label: "Bovenaan: tekst 'Mijn droom'"
+        description: Houd dit kort (één alinea), dan blijft de bovenkant van de pagina overzichtelijk.
         type: rich-text
         options:
           format: html
@@ -225,6 +226,12 @@ content:
       - name: waaromTitel
         label: "Waarom: titel"
         type: string
+      - name: waaromIntro
+        label: "Waarom: inleiding"
+        type: rich-text
+        options:
+          format: html
+          media: false
       - name: waaromPunten
         label: "Waarom: redenen"
         description: De kaartjes met redenen. Toevoegen, verwijderen en verslepen kan allemaal.

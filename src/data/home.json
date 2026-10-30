@@ -2,7 +2,7 @@
   "heroLabel": "⛵ Oktober 2027 – april 2028 · 12.000 zeemijl",
   "heroTitel": "Mijn droom",
   "heroLead": "Ik ben Marit, 15 jaar en zit in vwo 4 op het Eckartcollege in Eindhoven en heb een droom…",
-  "heroTekst": "<p>Mijn droom is om mee te gaan met School at Sea. Een waanzinnig avontuur van zes maanden op zee. In oktober 2027 gaan 36 andere kinderen en ik aan boord. We zeilen twee keer de Atlantische Oceaan over en doen verschillende landen aan.</p><p>Tijdens deze reis maak ik aan boord gewoon mijn schoolwerk en doe ik de reguliere toetsen. Daarnaast ontwikkel ik me op andere vlakken. Ik leer natuurlijk zeilen, moet leren koken en alles wat verder aan boord nodig is om samen het schip te runnen en te zeilen. Zelfontwikkeling staat hierbij centraal. Ik wil zelfstandiger en zelfverzekerder worden, maar ook leren om mijn stem meer te laten horen. Maar bovenal is het natuurlijk een ervaring die mij mijn hele leven bij zal blijven.</p>",
+  "heroTekst": "<p>Mijn droom is om mee te gaan met School at Sea. Een waanzinnig avontuur van zes maanden op zee. In oktober 2027 gaan 36 andere kinderen en ik aan boord. We zeilen twee keer de Atlantische Oceaan over en doen verschillende landen aan.</p>",
   "heroKnopSponsor": "Sponsor mij",
   "heroKnopReis": "Over de reis",
   "cijfers": [
@@ -24,6 +24,7 @@
     }
   ],
   "waaromTitel": "Waarom wil ik mee?",
+  "waaromIntro": "<p>Tijdens deze reis maak ik aan boord gewoon mijn schoolwerk en doe ik de reguliere toetsen. Daarnaast ontwikkel ik me op andere vlakken. Ik leer natuurlijk zeilen, moet leren koken en alles wat verder aan boord nodig is om samen het schip te runnen en te zeilen. Zelfontwikkeling staat hierbij centraal. Ik wil zelfstandiger en zelfverzekerder worden, maar ook leren om mijn stem meer te laten horen. Maar bovenal is het natuurlijk een ervaring die mij mijn hele leven bij zal blijven.</p>",
   "waaromPunten": [
     {
       "icoon": "kompas",

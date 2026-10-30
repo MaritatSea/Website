@@ -48,7 +48,6 @@ const hasSponsors = (sponsorData.sponsors ?? []).some((s) => s && (s.naam || s.l
           </a>
           <a href={u('/de-reis/')} class="btn btn-ghost">{home.heroKnopReis}</a>
         </div>
-        <Countdown />
       </div>
 
       <div class="hero-ship">
@@ -91,6 +90,7 @@ const hasSponsors = (sponsorData.sponsors ?? []).some((s) => s && (s.naam || s.l
     <div class="container">
       <div class="section-title" data-reveal>
         <h2>{home.waaromTitel}</h2>
+        {home.waaromIntro && <div class="prose why-intro" set:html={fixHtml(home.waaromIntro)} />}
       </div>
       <ul class="why-grid">
         {
@@ -150,6 +150,10 @@ const hasSponsors = (sponsorData.sponsors ?? []).some((s) => s && (s.naam || s.l
       <div class="section-title" data-reveal>
         <h2>{reis.titel}</h2>
         <p>{reis.intro}</p>
+      </div>
+
+      <div class="journey-countdown" data-reveal>
+        <Countdown />
       </div>
 
       <div class="journey-layout">
@@ -574,6 +578,13 @@ const hasSponsors = (sponsorData.sponsors ?? []).some((s) => s && (s.naam || s.l
   }
 
   /* ---------- Waarom ---------- */
+  .why-intro {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--text);
+    font-size: 1.1rem;
+  }
+
   .why-grid {
     list-style: none;
     padding: 0;
@@ -717,6 +728,12 @@ const hasSponsors = (sponsorData.sponsors ?? []).some((s) => s && (s.naam || s.l
   /* ---------- De reis ---------- */
   .journey {
     background: linear-gradient(var(--foam), var(--white));
+  }
+
+  .journey-countdown {
+    display: flex;
+    justify-content: center;
+    margin: -0.5rem 0 2.5rem;
   }
 
   .journey-layout {
