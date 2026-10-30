@@ -1,0 +1,77 @@
+---
+/** Kleine zeil-iconen (lijnstijl). */
+interface Props {
+  name: string;
+  size?: number;
+}
+
+const { name, size = 40 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 48 48"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.4"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {
+    name === 'schip' && (
+      <>
+        <path d="M24 6v28M24 8l12 20H24M22 12 12 28h10" />
+        <path d="M6 34h36l-5 7H11z" />
+      </>
+    )
+  }
+  {
+    name === 'boek' && (
+      <>
+        <path d="M24 12c-4-3-10-4-17-3v27c7-1 13 0 17 3 4-3 10-4 17-3V9c-7-1-13 0-17 3z" />
+        <path d="M24 12v27" />
+      </>
+    )
+  }
+  {
+    name === 'kompas' && (
+      <>
+        <circle cx="24" cy="24" r="17" />
+        <path d="m30 18-3.5 9.5L18 30l3.5-9.5z" />
+        <path d="M24 4v4M24 40v4M4 24h4M40 24h4" />
+      </>
+    )
+  }
+  {
+    name === 'wereld' && (
+      <>
+        <circle cx="24" cy="24" r="17" />
+        <path d="M7 24h34M24 7c5 5 7 11 7 17s-2 12-7 17c-5-5-7-11-7-17s2-12 7-17z" />
+      </>
+    )
+  }
+  {
+    name === 'anker' && (
+      <>
+        <circle cx="24" cy="9" r="3.5" />
+        <path d="M24 12.5V41M16 19h16M8 28c1 8 8 13 16 13s15-5 16-13M8 28l-2 4M8 28l4 2M40 28l2 4M40 28l-4 2" />
+      </>
+    )
+  }
+  {
+    name === 'golf' && (
+      <>
+        <path d="M4 18c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 8 4 4-4 8-4" />
+        <path d="M4 28c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 8 4 4-4 8-4" />
+        <path d="M4 38c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 8 4 4-4 8-4" />
+      </>
+    )
+  }
+  {
+    name === 'hart' && (
+      <path d="M24 40S7 30 7 18a8.5 8.5 0 0 1 17-3 8.5 8.5 0 0 1 17 3c0 12-17 22-17 22z" />
+    )
+  }
+</svg>

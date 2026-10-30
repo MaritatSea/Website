@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Waves from '../../components/Waves.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import site from '../../data/site.json';
+import { getNews } from '../../lib/utils';
+
+const news = await getNews();
+---
+
+<Layout title="Nieuws" description={`Nieuws en verhalen van ${site.naam} aan boord van de ${site.schip}.`}>
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="script">Nieuws</h1>
+      {site.nieuwsPaginaIntro && <p>{site.nieuwsPaginaIntro}</p>}
+    </div>
+    <Waves
+      colors={['rgba(74,143,184,0.4)', 'rgba(42,109,151,0.45)', 'rgba(23,61,92,0.5)', '#ffffff']}
+      height="clamp(50px, 8vw, 100px)"
+    />
+  </section>
+
+  <section class="section list">
+    <div class="container">
+      {
+        news.length > 0 ? (
+          <div class="news-grid">
+            {news.map((post) => (
+              <NewsCard post={post} />
+            ))}
+          </div>
+        ) : (
+          <p class="empty">Nog geen berichten, binnenkort meer! ⛵</p>
+        )
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    margin-top: -72px;
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    background: linear-gradient(180deg, #a9d3e0, var(--sky) 60%, var(--foam));
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 400;
+    margin-bottom: 0.2em;
+  }
+
+  .page-hero p {
+    max-width: 620px;
+    margin: 0 auto 1rem;
+    font-weight: 600;
+  }
+
+  .list {
+    padding-top: 2rem;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .empty {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--muted);
+  }
+</style>

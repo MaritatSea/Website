@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.env
+
+# Origineel bevat GPS-locatie (EXIF); opgeschoonde versie staat in public/images/
+_bootstrap_assets/borrelplank.jpeg

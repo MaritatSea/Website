@@ -1,0 +1,220 @@
+@import '@fontsource/kaushan-script/400.css';
+@import '@fontsource-variable/nunito';
+
+:root {
+  /* Kleuren uit het logo */
+  --navy: #0f2d45;
+  --navy-2: #173d5c;
+  --sea: #2a6d97;
+  --sea-2: #4a8fb8;
+  --sky: #c1dfe6;
+  --foam: #eaf5f8;
+  --land: #9cbb7c;
+  --sand: #f7f0e4;
+  --wood: #a8733f;
+  --white: #ffffff;
+  --text: #16324a;
+  --muted: #4f6a7f;
+
+  --font-script: 'Kaushan Script', cursive;
+  --font-body: 'Nunito Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius: 18px;
+  --shadow: 0 10px 30px -12px rgba(15, 45, 69, 0.35);
+  --max: 1140px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.075rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--sea);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 0 0 0.6em;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+}
+
+.container {
+  width: min(100% - 2.5rem, var(--max));
+  margin-inline: auto;
+}
+
+.section {
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  position: relative;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-title h2 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  margin-bottom: 0.3em;
+}
+
+.section-title p {
+  color: var(--muted);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Knoppen */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.85em 1.6em;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  background: var(--sea);
+}
+
+.btn-ghost {
+  border-color: var(--navy);
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.btn-ghost:hover {
+  background: var(--white);
+}
+
+/* Kaarten */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.75rem;
+}
+
+/* Inhoud uit de WYSIWYG-editor */
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose img {
+  border-radius: 12px;
+  display: block;
+  margin: 1.5rem auto;
+}
+
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.25rem;
+  border-left: 4px solid var(--sea-2);
+  background: var(--foam);
+  border-radius: 0 12px 12px 0;
+}
+
+.prose h2,
+.prose h3 {
+  margin-top: 1.6em;
+}
+
+/* Verschijnen bij scrollen */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.no-js [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

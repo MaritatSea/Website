@@ -1,0 +1,46 @@
+{
+  "heroLabel": "⛵ Zeilreis · 6 maanden · School aan boord",
+  "heroTagline": "Zes maanden op zee, op een échte tallship. Én gewoon naar school.",
+  "heroIntro": "Ik ga een half jaar mee op de Thalassa, samen met een groep leeftijdsgenoten. We zeilen, werken als bemanning en krijgen les van bevoegde docenten aan boord. Om mee te mogen moet ik zelf geld inzamelen, en daar heb ik jouw hulp bij nodig!",
+  "heroKnopSponsor": "Sponsor mij",
+  "heroKnopNieuws": "Volg de reis",
+  "overTitel": "Hoi, ik ben Marit!",
+  "overTekst": "<p>Ik zit op de middelbare school en ga binnenkort het avontuur van mijn leven aan: <strong>zes maanden zeilen</strong> op een groot zeilschip. Samen met andere scholieren vorm ik de bemanning: we staan aan het roer, hijsen de zeilen, draaien wachtdiensten en koken voor elkaar.</p><p>Ondertussen gaat school gewoon door. Aan boord krijgen we les van bevoegde docenten, dus ik loop geen achterstand op. Ik leer alleen een héleboel extra: over samenwerken, doorzetten, de zee en de wereld.</p>",
+  "reisTitel": "De reis",
+  "reisSubtitel": "Een half jaar leren, zeilen en ontdekken op de Thalassa.",
+  "reisPunten": [
+    {
+      "icoon": "schip",
+      "titel": "6 maanden op zee",
+      "tekst": "Een half jaar aan boord van de Thalassa, een prachtige driemaster."
+    },
+    {
+      "icoon": "boek",
+      "titel": "School aan boord",
+      "tekst": "Elke dag les van bevoegde docenten, gewoon volgens het schoolprogramma."
+    },
+    {
+      "icoon": "kompas",
+      "titel": "Zelf de bemanning",
+      "tekst": "Samen met leeftijdsgenoten zeilen we het schip: wachtlopen, navigeren, zeilen zetten."
+    },
+    {
+      "icoon": "wereld",
+      "titel": "De wereld zien",
+      "tekst": "Nieuwe havens, culturen en eindeloze horizonnen. Volg de reis op de nieuwspagina!"
+    }
+  ],
+  "sponsorTitel": "Help mij aan boord!",
+  "sponsorTekst": "<p>Om mee te mogen op deze reis moet ik een flink bedrag bij elkaar sparen en inzamelen. Elke bijdrage, groot of klein, brengt mij een stukje dichter bij de zee. Dankjewel!</p>",
+  "bankTitel": "Direct sponsoren",
+  "bankTekst": "Maak je bijdrage over naar:",
+  "bankBedankje": "Elk bedrag helpt, dankjewel! 💙",
+  "borrelplankTitel": "Een handgemaakte borrelplank als bedankje",
+  "borrelplankTekst": "<p>Sponsor je <strong>€ 100 of meer</strong>? Dan krijg je van mij een eikenhouten borrelplank met een gravure van de Thalassa. Perfect voor je volgende borrel, en een mooie herinnering aan deze reis.</p><p>Zet je naam en adres (of e-mailadres) in de omschrijving van je overboeking, dan neem ik contact met je op.</p>",
+  "borrelplankVanaf": 100,
+  "borrelplankFoto": "/images/borrelplank.jpg",
+  "sponsorsTitel": "Mijn sponsoren",
+  "sponsorsTekst": "Deze bedrijven helpen mij om aan boord te komen. Heel erg bedankt! Wil jij met je bedrijf ook sponsoren? Neem contact met me op.",
+  "nieuwsTitel": "Laatste nieuws",
+  "nieuwsSubtitel": "Verhalen en foto's van de voorbereidingen en vanaf zee."
+}

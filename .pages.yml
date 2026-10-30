@@ -1,0 +1,265 @@
+# Configuratie voor Pages CMS (https://app.pagescms.org)
+# Hiermee kan de website zonder programmeerkennis bewerkt worden.
+
+media:
+  input: public/media
+  output: /media
+
+content:
+  # ---------------------------------------------------------------
+  - name: nieuws
+    label: 📰 Nieuwsberichten
+    type: collection
+    path: src/content/nieuws
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, concept]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titel
+        type: string
+        required: true
+      - name: date
+        label: Datum
+        type: date
+        required: true
+        description: Berichten worden op datum gesorteerd, de nieuwste staat bovenaan.
+      - name: cover
+        label: Omslagfoto
+        type: image
+        description: Grote foto bovenaan het bericht en op de nieuwskaart. Mag leeg blijven.
+        options:
+          path: nieuws
+      - name: samenvatting
+        label: Korte samenvatting
+        type: text
+        description: Eén of twee zinnen voor op de nieuwskaart. Laat je dit leeg, dan wordt het begin van je bericht gebruikt.
+      - name: concept
+        label: Concept (nog niet publiceren)
+        type: boolean
+        description: Zet dit aan als je nog niet klaar bent. Het bericht is dan niet zichtbaar op de website.
+      - name: body
+        label: Bericht
+        type: rich-text
+        options:
+          format: html
+          path: nieuws
+
+  # ---------------------------------------------------------------
+  - name: home
+    label: 🏠 Teksten homepagina
+    type: file
+    path: src/data/home.json
+    format: json
+    fields:
+      - name: heroLabel
+        label: "Bovenaan: klein label"
+        type: string
+        description: Het kleine witte labeltje boven je naam. Mag leeg.
+      - name: heroTagline
+        label: "Bovenaan: slogan"
+        type: string
+      - name: heroIntro
+        label: "Bovenaan: introductie"
+        type: text
+      - name: heroKnopSponsor
+        label: "Bovenaan: tekst sponsorknop"
+        type: string
+      - name: heroKnopNieuws
+        label: "Bovenaan: tekst nieuwsknop"
+        type: string
+      - name: overTitel
+        label: "Over mij: titel"
+        type: string
+      - name: overTekst
+        label: "Over mij: tekst"
+        type: rich-text
+        options:
+          format: html
+      - name: reisTitel
+        label: "De reis: titel"
+        type: string
+      - name: reisSubtitel
+        label: "De reis: ondertitel"
+        type: string
+      - name: reisPunten
+        label: "De reis: blokjes"
+        description: De kaartjes met een icoon. Je kunt ze toevoegen, verwijderen en van volgorde veranderen.
+        type: object
+        list:
+          min: 1
+          max: 8
+          collapsible:
+            collapsed: true
+            summary: "{titel}"
+        fields:
+          - name: icoon
+            label: Icoon
+            type: select
+            options:
+              values:
+                - name: schip
+                  label: ⛵ Schip
+                - name: boek
+                  label: 📖 Boek
+                - name: kompas
+                  label: 🧭 Kompas
+                - name: wereld
+                  label: 🌍 Wereldbol
+                - name: anker
+                  label: ⚓ Anker
+                - name: golf
+                  label: 🌊 Golven
+                - name: hart
+                  label: 💙 Hartje
+          - name: titel
+            label: Titel
+            type: string
+          - name: tekst
+            label: Tekst
+            type: text
+      - name: sponsorTitel
+        label: "Sponsoren: titel"
+        type: string
+      - name: sponsorTekst
+        label: "Sponsoren: tekst"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: bankTitel
+        label: "Overboeken: titel"
+        type: string
+      - name: bankTekst
+        label: "Overboeken: tekst boven het rekeningnummer"
+        type: string
+      - name: bankBedankje
+        label: "Overboeken: bedankje onderaan"
+        type: string
+      - name: borrelplankTitel
+        label: "Borrelplank: titel"
+        type: string
+      - name: borrelplankTekst
+        label: "Borrelplank: tekst"
+        type: rich-text
+        options:
+          format: html
+          media: false
+      - name: borrelplankVanaf
+        label: "Borrelplank: vanaf bedrag (€)"
+        type: number
+        description: Dit bedrag staat in het ronde stempeltje op de foto.
+      - name: borrelplankFoto
+        label: "Borrelplank: foto"
+        type: image
+      - name: sponsorsTitel
+        label: "Sponsorlogo's: titel"
+        type: string
+      - name: sponsorsTekst
+        label: "Sponsorlogo's: tekst"
+        type: text
+      - name: nieuwsTitel
+        label: "Laatste nieuws: titel"
+        type: string
+      - name: nieuwsSubtitel
+        label: "Laatste nieuws: ondertitel"
+        type: string
+
+  # ---------------------------------------------------------------
+  - name: sponsors
+    label: 🤝 Sponsorlogo's
+    type: file
+    path: src/data/sponsors.json
+    format: json
+    fields:
+      - name: sponsors
+        label: Sponsoren
+        description: Bedrijven en organisaties die op de homepagina komen. Sleep ze om de volgorde te veranderen.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{naam}"
+        fields:
+          - name: naam
+            label: Naam
+            type: string
+            required: true
+          - name: logo
+            label: Logo
+            type: image
+            description: Het liefst een PNG met doorzichtige achtergrond.
+            options:
+              path: sponsors
+          - name: url
+            label: Website (optioneel)
+            type: string
+            description: "Bijvoorbeeld https://www.bedrijf.nl. Het logo wordt dan klikbaar."
+
+  # ---------------------------------------------------------------
+  - name: site
+    label: ⚙️ Instellingen & sponsorteller
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - name: opgehaald
+        label: Al opgehaald (€)
+        type: number
+        description: Pas dit aan als er geld binnenkomt. Het bootje in de voortgangsbalk vaart dan verder!
+      - name: doelbedrag
+        label: Doelbedrag (€)
+        type: number
+        description: Zet op 0 om de voortgangsbalk te verbergen.
+      - name: iban
+        label: IBAN (rekeningnummer)
+        type: string
+        required: true
+      - name: tenaamstelling
+        label: Ten name van
+        type: string
+      - name: omschrijving
+        label: Omschrijving bij overboeking
+        type: string
+      - name: betaalverzoekUrl
+        label: Link naar betaalverzoek (optioneel)
+        type: string
+        description: Bijvoorbeeld een Tikkie- of bankbetaalverzoek-link. Er verschijnt dan een extra knop.
+      - name: vertrekdatum
+        label: Vertrekdatum
+        type: date
+        description: Hiermee telt de site af ("nog 42 dagen tot vertrek") en tijdens de reis ("dag 12 op zee").
+      - name: terugkomstdatum
+        label: Terugkomstdatum
+        type: date
+      - name: naam
+        label: Je voornaam
+        type: string
+      - name: schip
+        label: Naam van het schip
+        type: string
+      - name: organisatie
+        label: Naam van de organisatie
+        type: string
+      - name: organisatieUrl
+        label: Website van de organisatie
+        type: string
+      - name: email
+        label: E-mailadres (optioneel)
+        type: string
+        description: Wordt onderaan de site getoond.
+      - name: instagram
+        label: Instagram-link (optioneel)
+        type: string
+        description: "Bijvoorbeeld https://www.instagram.com/maritatsea"
+      - name: footerTekst
+        label: Tekst onderaan de site
+        type: string
+      - name: nieuwsPaginaIntro
+        label: Introductie nieuwspagina
+        type: text

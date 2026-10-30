@@ -1,0 +1,92 @@
+---
+/**
+ * Geanimeerde golven (vier lagen die met verschillende snelheden bewegen).
+ * `colors` = kleuren van achter naar voor; de laatste is meestal gelijk aan
+ * de achtergrond van de volgende sectie, zodat de golf er naadloos in overloopt.
+ */
+interface Props {
+  colors?: string[];
+  height?: string;
+  flip?: boolean;
+  class?: string;
+}
+
+const {
+  colors = ['rgba(74,143,184,0.55)', 'rgba(42,109,151,0.6)', 'rgba(23,61,92,0.75)', '#ffffff'],
+  height = 'clamp(60px, 10vw, 140px)',
+  flip = false,
+  class: className = '',
+} = Astro.props;
+
+const id = `wave-${Math.random().toString(36).slice(2, 9)}`;
+const offsets = [48, 48, 48, 48];
+const ys = [0, 3, 5, 7];
+---
+
+<div class:list={['waves', className, { flip }]} style={`--wave-h:${height}`} aria-hidden="true">
+  <svg viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+      <path
+        id={id}
+        d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"></path>
+    </defs>
+    <g class="parallax">
+      {colors.map((c, i) => <use href={`#${id}`} x={offsets[i] ?? 48} y={ys[i] ?? 7} fill={c} />)}
+    </g>
+  </svg>
+</div>
+
+<style>
+  .waves {
+    position: relative;
+    width: 100%;
+    height: var(--wave-h);
+    line-height: 0;
+    margin-bottom: -1px;
+  }
+
+  .waves.flip {
+    transform: rotate(180deg);
+    margin-bottom: 0;
+    margin-top: -1px;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .parallax > :global(use) {
+    animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  }
+
+  .parallax > :global(use:nth-child(1)) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+  }
+
+  .parallax > :global(use:nth-child(2)) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+  }
+
+  .parallax > :global(use:nth-child(3)) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+  }
+
+  .parallax > :global(use:nth-child(4)) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+  }
+
+  @keyframes move-forever {
+    0% {
+      transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+      transform: translate3d(85px, 0, 0);
+    }
+  }
+</style>

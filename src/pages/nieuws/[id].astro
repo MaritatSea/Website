@@ -1,0 +1,152 @@
+---
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Waves from '../../components/Waves.astro';
+import { formatDate, excerpt, getNews } from '../../lib/utils';
+
+export async function getStaticPaths() {
+  const posts = await getNews();
+  return posts.map((post, i) => ({
+    params: { id: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const { title, date, cover, samenvatting } = post.data;
+---
+
+<Layout title={title} description={samenvatting || excerpt(post.body ?? '')} image={cover || undefined}>
+  <article>
+    <header class="post-hero">
+      <div class="container narrow">
+        <a href="/nieuws/" class="back">← Alle berichten</a>
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <h1>{title}</h1>
+      </div>
+      <Waves
+        colors={['rgba(74,143,184,0.4)', 'rgba(42,109,151,0.45)', 'rgba(23,61,92,0.5)', '#ffffff']}
+        height="clamp(40px, 6vw, 80px)"
+      />
+    </header>
+
+    <div class="container narrow body">
+      {cover && <img class="cover" src={cover} alt="" />}
+      <div class="prose">
+        <Content />
+      </div>
+
+      <nav class="pager" aria-label="Meer berichten">
+        {
+          older ? (
+            <a href={`/nieuws/${older.id}/`}>
+              <small>← Vorig bericht</small>
+              {older.data.title}
+            </a>
+          ) : (
+            <span />
+          )
+        }
+        {
+          newer && (
+            <a href={`/nieuws/${newer.id}/`} class="next">
+              <small>Volgend bericht →</small>
+              {newer.data.title}
+            </a>
+          )
+        }
+      </nav>
+
+      <aside class="cta">
+        <p><strong>Wil je mij helpen aan boord te komen?</strong></p>
+        <a href="/#sponsor" class="btn btn-primary">Sponsor mij</a>
+      </aside>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .narrow {
+    width: min(100% - 2.5rem, 760px);
+  }
+
+  .post-hero {
+    margin-top: -72px;
+    padding-top: calc(72px + clamp(1.5rem, 5vw, 3rem));
+    background: linear-gradient(180deg, #a9d3e0, var(--sky) 60%, var(--foam));
+  }
+
+  .back {
+    display: inline-block;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 1rem;
+  }
+
+  time {
+    display: block;
+    font-weight: 800;
+    color: var(--sea);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0.3rem 0 0.5rem;
+  }
+
+  .body {
+    padding: 1.5rem 0 4rem;
+  }
+
+  .cover {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin: -2rem 0 2rem;
+    position: relative;
+  }
+
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px dashed var(--sky);
+  }
+
+  .pager a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    font-weight: 700;
+    max-width: 48%;
+  }
+
+  .pager small {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .pager .next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .cta {
+    margin-top: 2.5rem;
+    padding: 1.75rem;
+    text-align: center;
+    background: var(--foam);
+    border-radius: var(--radius);
+  }
+
+  .cta p {
+    margin-top: 0;
+  }
+</style>
