@@ -3,47 +3,57 @@ import { u } from '../lib/utils';
 import '../styles/global.css';
 import Waves from '../components/Waves.astro';
 import site from '../data/site.json';
+import { t, href, routes, langs, type Lang, type Page } from '../i18n';
 
 interface Props {
+  lang: Lang;
+  /** Welke pagina dit is (voor menu en taalwissel). */
+  page?: Page;
+  /** Eigen links naar deze pagina in andere talen (bijv. bij nieuwsberichten). */
+  alternates?: Partial<Record<Lang, string>>;
   title?: string;
   description?: string;
   image?: string;
 }
 
-const {
-  title,
-  description = `Help ${site.naam} aan boord! Zes maanden zeilen én naar school op de ${site.schip}.`,
-  image = '/images/og-image.jpg',
-} = Astro.props;
+const { lang, page, title, image = '/images/og-image.jpg' } = Astro.props;
+const { ui, home } = t(lang);
+const description = Astro.props.description || ui.standaardOmschrijving;
 
-const pageTitle = title ? `${title} | Marit at Sea` : 'Marit at Sea | Help mij aan boord!';
+const pageTitle = title ? `${title} | Marit at Sea` : ui.standaardTitel;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(u(image), Astro.site);
-const path = Astro.url.pathname;
 const year = new Date().getFullYear();
 
-const nav = [
-  { href: '/', label: 'Mijn droom' },
-  { href: '/over-mij/', label: 'Over mij' },
-  { href: '/de-reis/', label: 'De reis' },
-  { href: '/nieuws/', label: 'Nieuws' },
+// Dezelfde pagina in de andere taal; zonder bekende tegenhanger: de homepagina
+const alternates: Record<Lang, string> = Object.fromEntries(
+  langs.map((l) => [l, Astro.props.alternates?.[l] ?? (page ? href(l, page) : href(l, 'home'))]),
+) as Record<Lang, string>;
+const other: Lang = lang === 'nl' ? 'en' : 'nl';
+
+const nav: { page: Page; label: string }[] = [
+  { page: 'home', label: ui.navHome },
+  { page: 'over', label: ui.navOver },
+  { page: 'reis', label: ui.navReis },
+  { page: 'nieuws', label: ui.navNieuws },
 ];
-const isCurrent = (href: string) =>
-  href === '/' ? path === u('/') || path === u('') : path.startsWith(u(href.replace(/\/$/, '')));
 ---
 
 <!doctype html>
-<html lang="nl" class="no-js">
+<html lang={lang === 'en' ? 'en-GB' : 'nl'} class="no-js">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {langs.map((l) => <link rel="alternate" hreflang={l === 'en' ? 'en-GB' : 'nl'} href={new URL(alternates[l], Astro.site)} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(alternates.nl, Astro.site)} />
     <link rel="icon" type="image/png" href={u('/favicon.png')} />
     <link rel="apple-touch-icon" href={u('/apple-touch-icon.png')} />
     <meta name="theme-color" content="#0f2d45" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'nl_NL'} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
@@ -52,15 +62,39 @@ const isCurrent = (href: string) =>
     <script is:inline>
       document.documentElement.classList.remove('no-js');
     </script>
+    {
+      lang === 'nl' && (
+        <script is:inline define:vars={{ enUrl: alternates.en }}>
+          // Apparaat niet op Nederlands ingesteld en nog geen eigen taalkeuze? Dan naar de Engelse versie.
+          try {
+            var gekozen = localStorage.getItem('taal');
+            var bot = navigator.webdriver || /bot|crawl|spider|slurp|preview/i.test(navigator.userAgent);
+            if (!gekozen && !bot) {
+              var voorkeur = (navigator.languages || [navigator.language || '']).map(function (l) {
+                return String(l).toLowerCase().slice(0, 2);
+              });
+              var eerste = voorkeur.filter(function (l) {
+                return l === 'nl' || l === 'en';
+              })[0];
+              if (voorkeur[0] && eerste !== 'nl') location.replace(enUrl + location.hash);
+            }
+          } catch (e) {}
+        </script>
+      )
+    }
   </head>
   <body>
-    <a class="skip" href="#main">Naar de inhoud</a>
+    <a class="skip" href="#main">{ui.naarInhoud}</a>
 
     <header class="site-header" data-header>
       <div class="container header-inner">
-        <a href={u('/')} class="brand" aria-label="Marit at Sea, naar de homepagina">
+        <a href={href(lang, 'home')} class="brand" aria-label={ui.naarHome}>
           <img src={u('/images/logo-badge.webp')} alt="" width="48" height="47" />
           <span class="script">Marit <small>at sea</small></span>
+        </a>
+
+        <a class="lang-switch mobile-only" href={alternates[other]} hreflang={other} lang={other} data-taal={other}>
+          {other.toUpperCase()}
         </a>
 
         <button class="menu-toggle" aria-expanded="false" aria-controls="menu" data-menu-toggle>
@@ -71,12 +105,17 @@ const isCurrent = (href: string) =>
         <nav id="menu" class="nav" data-menu>
           {
             nav.map((item) => (
-              <a href={u(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+              <a href={href(lang, item.page)} aria-current={page === item.page ? 'page' : undefined}>
                 {item.label}
               </a>
             ))
           }
-          <a href={u('/sponsor-mij/')} class="btn btn-primary nav-cta">Sponsor mij</a>
+          <a href={href(lang, 'sponsor')} class="btn btn-primary nav-cta" aria-current={page === 'sponsor' ? 'page' : undefined}>
+            {ui.navSponsor}
+          </a>
+          <a class="lang-switch desktop-only" href={alternates[other]} hreflang={other} lang={other} title={ui.taalWissel} data-taal={other}>
+            {other.toUpperCase()}
+          </a>
         </nav>
       </div>
     </header>
@@ -97,21 +136,39 @@ const isCurrent = (href: string) =>
         <div class="container footer-grid">
           <div>
             <p class="script footer-brand">Marit at Sea</p>
-            {site.footerTekst && <p>{site.footerTekst}</p>}
+            {home.footerTekst && <p>{home.footerTekst}</p>}
           </div>
           <nav class="footer-links" aria-label="Footer">
-            {nav.map((item) => <a href={u(item.href)}>{item.label}</a>)}
-            <a href={u('/sponsor-mij/')}>Sponsor mij</a>
+            {nav.map((item) => <a href={href(lang, item.page)}>{item.label}</a>)}
+            <a href={href(lang, 'sponsor')}>{ui.navSponsor}</a>
             {site.organisatieUrl && <a href={site.organisatieUrl}>{site.organisatie}</a>}
             {site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}
             {site.instagram && <a href={site.instagram}>Instagram</a>}
           </nav>
         </div>
-        <p class="container copyright">© {year} Marit at Sea · Wind in de zeilen! ⛵</p>
+        <div class="container lang-choice" role="group" aria-label="Taal / Language">
+          <span class="lang-label" aria-hidden="true">🌐 Taal · Language</span>
+          <a href={alternates.nl} hreflang="nl" lang="nl" data-taal="nl" aria-current={lang === 'nl' ? 'true' : undefined}>
+            🇳🇱 Nederlands
+          </a>
+          <a href={alternates.en} hreflang="en-GB" lang="en-GB" data-taal="en" aria-current={lang === 'en' ? 'true' : undefined}>
+            🇬🇧 English
+          </a>
+        </div>
+        <p class="container copyright">© {year} Marit at Sea · {ui.voetnootGroet}</p>
       </div>
     </footer>
 
     <script>
+      // Gekozen taal onthouden (gaat voor de taal van het apparaat)
+      document.querySelectorAll<HTMLAnchorElement>('[data-taal]').forEach((a) =>
+        a.addEventListener('click', () => {
+          try {
+            localStorage.setItem('taal', a.dataset.taal ?? '');
+          } catch {}
+        }),
+      );
+
       // Header krijgt achtergrond na scrollen
       const header = document.querySelector<HTMLElement>('[data-header]');
       const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 20);
@@ -244,6 +301,38 @@ const isCurrent = (href: string) =>
     padding: 0.6em 1.3em;
   }
 
+  .lang-switch {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    font-weight: 900;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+    text-decoration: none;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      transform 0.3s;
+  }
+
+  .nav a.lang-switch::after {
+    display: none;
+  }
+
+  .lang-switch:hover {
+    background: var(--navy);
+    color: #fff;
+    transform: rotate(-10deg);
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
   .menu-toggle {
     display: none;
     width: 44px;
@@ -299,6 +388,16 @@ const isCurrent = (href: string) =>
   @media (max-width: 820px) {
     .menu-toggle {
       display: block;
+    }
+
+    .mobile-only {
+      display: inline-grid;
+      margin-left: auto;
+      margin-right: 0.5rem;
+    }
+
+    .desktop-only {
+      display: none;
     }
 
     .nav {
@@ -405,8 +504,43 @@ const isCurrent = (href: string) =>
     gap: 0.35rem;
   }
 
-  .copyright {
+  .lang-choice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
     margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .lang-label {
+    font-weight: 700;
+    margin-right: 0.4rem;
+    opacity: 0.8;
+  }
+
+  .lang-choice a {
+    padding: 0.35em 1em;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    font-weight: 800;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .lang-choice a:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .lang-choice a[aria-current] {
+    background: #fff;
+    color: var(--navy);
+    border-color: #fff;
+  }
+
+  .copyright {
+    margin-top: 1.25rem;
     font-size: 0.9rem;
     opacity: 0.7;
   }

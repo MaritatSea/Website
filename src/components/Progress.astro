@@ -1,13 +1,16 @@
 ---
 import { formatEuro } from '../lib/utils';
 import site from '../data/site.json';
+import { t, fill, type Lang } from '../i18n';
 
 /** Voortgangsbalk met een bootje dat naar het opgehaalde percentage vaart. */
 interface Props {
+  lang: Lang;
   light?: boolean;
 }
 
-const { light = false } = Astro.props;
+const { lang, light = false } = Astro.props;
+const { ui } = t(lang);
 const goal = Number(site.doelbedrag) || 0;
 const raised = Number(site.opgehaald) || 0;
 const pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
@@ -18,10 +21,10 @@ const pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
     <div class:list={['progress', { light }]} data-reveal data-progress style={`--pct:${pct}`}>
       <div class="labels">
         <span>
-          <strong>{formatEuro(raised)}</strong> opgehaald
+          <strong>{formatEuro(raised, lang)}</strong> {ui.opgehaald}
         </span>
         <span>
-          doel: <strong>{formatEuro(goal)}</strong>
+          {ui.doel}: <strong>{formatEuro(goal, lang)}</strong>
         </span>
       </div>
       <div
@@ -30,7 +33,7 @@ const pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
         aria-valuemin="0"
         aria-valuemax="100"
         aria-valuenow={pct}
-        aria-label="Opgehaald bedrag"
+        aria-label={ui.voortgangLabel}
       >
         <div class="fill" />
         <svg class="boat" viewBox="0 0 48 48" aria-hidden="true">
@@ -41,7 +44,7 @@ const pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
         </svg>
       </div>
       <p class="pct">
-        {raised > 0 ? `${pct}% van mijn doel bij elkaar gezeild!` : 'Help jij mij de eerste zeemijlen te varen?'}
+        {raised > 0 ? fill(ui.voortgangProcent, { pct }) : ui.voortgangNul}
       </p>
     </div>
   )

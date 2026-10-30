@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import NewsCard from '../components/NewsCard.astro';
+import { getNews } from '../lib/utils';
+import { t, href, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { ui, home } = t(lang);
+const news = await getNews(lang);
+// Op de Engelse site: verwijs naar het Nederlandse nieuws als daar meer staat
+const otherCount = lang === 'en' ? (await getNews('nl')).length : 0;
+---
+
+<Layout lang={lang} page="nieuws" title={ui.nieuwsTitel} description={ui.nieuwsOmschrijving}>
+  <PageHero title={ui.nieuwsTitel} intro={home.nieuwsPaginaIntro} />
+
+  <section class="section list">
+    <div class="container">
+      {
+        news.length > 0 ? (
+          <div class="news-grid">
+            {news.map((post) => (
+              <NewsCard post={post} lang={lang} />
+            ))}
+          </div>
+        ) : (
+          <p class="empty">{ui.geenBerichten}</p>
+        )
+      }
+      {
+        otherCount > news.length && ui.nieuwsAndereTaal && (
+          <p class="other">
+            {ui.nieuwsAndereTaal}{' '}
+            <a href={href('nl', 'nieuws')} hreflang="nl">
+              {ui.nieuwsAndereTaalLink}
+            </a>
+          </p>
+        )
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .list {
+    padding-top: 2rem;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .empty {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--muted);
+  }
+
+  .other {
+    margin: 2.5rem auto 0;
+    max-width: 640px;
+    text-align: center;
+    padding: 1.25rem;
+    background: var(--foam);
+    border-radius: var(--radius);
+    font-weight: 600;
+  }
+</style>

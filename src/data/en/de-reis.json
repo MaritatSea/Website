@@ -1,0 +1,43 @@
+{
+  "titel": "The voyage",
+  "intro": "The voyage we're making is six months and 12,000 nautical miles long. We set off in October 2027 and return in April 2028. Below you can read more about what School at Sea is and what it all involves.",
+  "kaartVoetnoot": "The destinations mentioned are subject to change: depending on circumstances, they may or may not go ahead.",
+  "onderdelen": [
+    {
+      "titel": "Expeditions",
+      "icoon": "berg",
+      "samenvatting": "We'll climb El Teide on Tenerife, trek through the jungle on Dominica and explore Panama on our own in small groups.",
+      "tekst": "<p>During our voyage we'll visit quite a few countries, and we'll get to explore them too. On Tenerife we're going to climb El Teide, and on Dominica we'll cross the jungle on an expedition. We'll also stop at Curaçao and Panama.</p><p>In Panama we have our first <strong>own journey</strong>. That means you get to explore the country yourself with a small group of other students and a teacher. You get a budget, and your group has to make a plan for what you're going to do and how. The only conditions are that it's safe and that you don't cause any nuisance. The teacher comes along to make sure we stick to those conditions. Apart from that, we get to make all the decisions.</p><p>We'll also visit Cuba, Bermuda and the Azores. There's even an exchange with a school at one of the destinations. Brilliant, of course, to meet people our own age from a completely different culture.</p>",
+      "afbeelding": ""
+    },
+    {
+      "titel": "School",
+      "icoon": "boek",
+      "samenvatting": "I'll do my schoolwork and tests on board: the same programme as my classmates, just completely independently.",
+      "tekst": "<p>Of course, it's not as if I get six months off school. It's not called <strong>School at Sea</strong> for nothing! I'll do my schoolwork and tests on board. I follow the same programme as my classmates in the Netherlands, only completely independently. So when I'm back at my own school in April, I should have no catching up to do and can slot straight back into the normal timetable without too much trouble.</p>",
+      "afbeelding": ""
+    },
+    {
+      "titel": "Keeping watch",
+      "icoon": "kompas",
+      "samenvatting": "With my watch group we navigate, keep a lookout and set the right sails.",
+      "tekst": "<p>Naturally, there's sailing to be done as well. When you're on watch, you and your group are responsible for navigating properly, keeping an eye out for other ships nearby, setting the right sails, and so on. I'm really looking forward to this, because I think it's a great way to learn to take responsibility.</p>",
+      "afbeelding": ""
+    },
+    {
+      "titel": "Cooking",
+      "icoon": "pan",
+      "samenvatting": "Once every twelve days I spend the whole day in the galley with two others. Cooking for fifty!",
+      "tekst": "<p>There are fifty of us on board, including the crew, so there's plenty of cooking to be done! Once every twelve days you're on kitchen duty and spend the whole day in the galley with two other students. You get to decide what to make yourselves.</p><p>I'd love to learn to cook, because I'm not very good at it yet. For the first three months there's a cook on board who teaches us the tricks of the trade, but after that we'll be so good that he can go home!</p>",
+      "afbeelding": ""
+    },
+    {
+      "titel": "Ship takeovers",
+      "icoon": "stuur",
+      "samenvatting": "The crew takes a step back and we sail the ship entirely by ourselves.",
+      "tekst": "<p>There are also ship takeovers. The crew takes a step back and we sail the ship. We really have to do everything ourselves.</p>",
+      "afbeelding": ""
+    }
+  ],
+  "meerInfoTekst": "For more information about School at Sea itself, have a look at their website. During the voyage you can also follow the ship live!"
+}

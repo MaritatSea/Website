@@ -1,6 +1,13 @@
 ---
 /** 100 patrijspoorten: elk lid van de club van 100 doet er één "aan". */
 import club from '../data/club-van-100.json';
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { ui } = t(Astro.props.lang);
 
 const leden = (club.leden ?? []).filter((l) => l && l.naam);
 const count = Math.min(100, leden.length);
@@ -11,8 +18,8 @@ const count = Math.min(100, leden.length);
     {Array.from({ length: 100 }, (_, i) => <li class:list={{ on: i < count }} style={`--i:${i}`} />)}
   </ol>
   <p class="count">
-    <strong>{count}</strong> van de 100 leden
-    {count < 100 ? <span> · doe jij ook mee?</span> : <span> · de club is vol, dankjewel! 🎉</span>}
+    <strong>{count}</strong> {ui.clubVanDe100}
+    {count < 100 ? <span> · {ui.clubDoeMee}</span> : <span> · {ui.clubVol}</span>}
   </p>
 </div>
 

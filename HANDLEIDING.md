@@ -15,14 +15,24 @@ Links zie je nu het menu:
 
 | Menu | Wat pas je hier aan? |
 | --- | --- |
-| 📰 **Nieuwsberichten** | Berichten schrijven, met foto's |
-| 💶 **Sponsorteller & instellingen** | Opgehaald bedrag, GoFundMe-link, e-mail, Instagram… |
-| 🪵 **Club van 100 (leden)** | Namen van de leden van de club van 100 |
-| 🤝 **Sponsorlogo's (bedrijven)** | Logo's van bedrijven die je sponsoren |
-| 🏠 **Pagina: Mijn droom (home)** | Teksten op de voorpagina |
-| 🙋‍♀️ **Pagina: Over mij** | Tekst, foto en weetjes over jou |
-| 🗺️ **Pagina: De reis** | Expedities, school, wachtlopen, koken… |
-| ❤️ **Pagina: Sponsor mij** | GoFundMe, club van 100, zakelijke sponsoring |
+| 📰 **Nieuwsberichten 🇳🇱** | Nederlandse berichten, met foto's |
+| 📰 **News (Engelse berichten) 🇬🇧** | Engelse berichten (optioneel) |
+| 💶 **Sponsorteller & instellingen** | Opgehaald bedrag, GoFundMe-link, vertrek, e-mail… (geldt voor beide talen) |
+| 🪵 **Club van 100 (leden)** | Namen van de leden, eventueel met link |
+| 🤝 **Sponsorlogo's (bedrijven)** | Logo's van bedrijven, eventueel met link |
+| 🇳🇱 **Pagina: …** | De Nederlandse teksten van elke pagina |
+| 🇳🇱 **Knoppen & kleine teksten** | Menu, knoppen en labeltjes in het Nederlands |
+| 🇬🇧 **Pagina: …** | Dezelfde pagina's, maar de Engelse teksten |
+| 🇬🇧 **Knoppen & kleine teksten** | Menu, knoppen en labeltjes in het Engels |
+
+> 🌍 **Twee talen.** De site bestaat in het Nederlands en het Engels. Pas je
+> iets aan bij 🇳🇱, vergeet dan niet ook de 🇬🇧-versie bij te werken (of vraag
+> iemand om te helpen met vertalen). Bedragen, links, foto's van sponsoren en
+> de Club van 100 zijn voor beide talen hetzelfde.
+>
+> Bezoekers met een Engelstalige (of andere niet-Nederlandse) telefoon of
+> computer komen vanzelf op de Engelse versie. Onderaan elke pagina kan
+> iedereen zelf de taal kiezen.
 
 > 💡 **Korte en lange teksten.** Op de homepagina staat van elk onderwerp een
 > korte versie met een knop "Meer lezen". Beide versies pas je aan op
@@ -46,6 +56,10 @@ Links zie je nu het menu:
 
 **Nog niet klaar?** Zet dan **Concept** aan. Het bericht wordt opgeslagen,
 maar staat nog niet op de site. Zet het vinkje uit als je het wilt publiceren.
+
+**Ook in het Engels?** Schrijf dan hetzelfde bericht nog een keer onder
+**News (Engelse berichten) 🇬🇧**. Hoeft niet: zolang er weinig Engelse berichten
+zijn, verwijst de Engelse nieuwspagina vanzelf naar het Nederlandse nieuws.
 
 **Tips voor foto's**
 - Foto's van je telefoon zijn vaak erg groot (5+ MB). Verklein ze eerst als
@@ -83,15 +97,19 @@ en na de terugkomstdatum "Weer veilig thuis!".
 
 1. Ga naar **Club van 100 (leden)**.
 2. Klik op **Add an item** en vul de naam in (vraag even of dat goed is!).
-3. Klik op **Save**. De naam verschijnt op de sponsorpagina en er gaat een
+3. Vul eventueel een **Link** in (website of LinkedIn). Geen link? Laat het
+   leeg, dan staat alleen de naam er.
+4. Klik op **Save**. De naam verschijnt op de sponsorpagina en er gaat een
    patrijspoort "aan" 🟡.
 
 ## 🤝 Een sponsor (bedrijf) toevoegen
 
 1. Ga naar **Sponsorlogo's (bedrijven)**.
 2. Klik onderaan op **Add an item** (toevoegen).
-3. Vul de **Naam** in, upload het **Logo** en vul eventueel de **Website** in.
-4. Klik op **Save**.
+3. Vul de **Naam** in en upload het **Logo**.
+4. Heeft het bedrijf een website? Vul die in bij **Website**, bijvoorbeeld
+   `www.bedrijf.nl`. Dan wordt het logo klikbaar. Geen website? Laat het leeg.
+5. Klik op **Save**.
 
 Je kunt sponsoren verslepen om de volgorde te veranderen.
 

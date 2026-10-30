@@ -5,6 +5,14 @@
  */
 import site from '../data/site.json';
 import { amsterdamDate } from '../lib/utils';
+import { t, locale, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { ui, home } = t(lang);
 
 const start = amsterdamDate(site.vertrekdatum);
 const end = amsterdamDate(site.terugkomstdatum);
@@ -12,7 +20,7 @@ const end = amsterdamDate(site.terugkomstdatum);
 const endIso = end ? new Date(end.getTime() + 86400000).toISOString() : '';
 
 const label = start
-  ? start.toLocaleString('nl-NL', {
+  ? start.toLocaleString(locale[lang], {
       timeZone: 'Europe/Amsterdam',
       weekday: 'long',
       day: 'numeric',
@@ -26,16 +34,23 @@ const label = start
 
 {
   start && (
-    <div class="countdown" data-countdown data-start={start.toISOString()} data-end={endIso}>
+    <div
+      class="countdown"
+      data-countdown
+      data-start={start.toISOString()}
+      data-end={endIso}
+      data-op-zee={ui.aftelOpZee}
+      data-thuis={ui.aftelThuis}
+    >
       <p class="title" data-cd-title>
-        {site.aftelTekst}
+        {home.aftelTekst}
       </p>
       <div class="units" data-cd-units>
         {[
-          ['d', 'dagen'],
-          ['h', 'uur'],
-          ['m', 'min'],
-          ['s', 'sec'],
+          ['d', ui.aftelDagen],
+          ['h', ui.aftelUur],
+          ['m', ui.aftelMin],
+          ['s', ui.aftelSec],
         ].map(([k, l]) => (
           <div class="unit">
             <span class="num" data-cd={k}>
@@ -45,7 +60,7 @@ const label = start
           </div>
         ))}
       </div>
-      <p class="when">Vertrek: {label}</p>
+      <p class="when">{ui.aftelVertrek} {label}</p>
     </div>
   )
 }
@@ -83,9 +98,13 @@ const label = start
       el.classList.add('done');
       if (!end || now < end) {
         const day = Math.floor((now - start) / 86400000) + 1;
-        title.innerHTML = `Dag <strong>${day}</strong> op zee 🌊`;
+        const [voor, na = ''] = (el.dataset.opZee ?? '{n}').split('{n}');
+        title.textContent = voor;
+        const strong = document.createElement('strong');
+        strong.textContent = String(day);
+        title.append(strong, na);
       } else {
-        title.textContent = 'Weer veilig thuis! ⚓';
+        title.textContent = el.dataset.thuis ?? '';
       }
       return false;
     };

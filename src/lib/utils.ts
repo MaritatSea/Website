@@ -13,6 +13,13 @@ export const u = (path?: string | null) =>
 export const fixHtml = (html?: string | null) =>
   base ? (html ?? '').replace(/\b(src|href)="\/(?!\/)/g, `$1="${base}/`) : (html ?? '');
 
+/** Optionele externe link netjes maken: 'www.bedrijf.nl' -> 'https://www.bedrijf.nl'. Leeg blijft leeg. */
+export const extUrl = (url?: string | null) => {
+  const s = (url ?? '').trim();
+  if (!s) return '';
+  return /^(https?:|mailto:)/i.test(s) ? s : `https://${s.replace(/^\/+/, '')}`;
+};
+
 /** 'Club van 100' -> 'club-van-100' (voor ankerlinks). */
 export const slugify = (s: string) =>
   s
@@ -51,11 +58,13 @@ export function amsterdamDate(value?: string | null): Date | null {
   return new Date(guess - (shown - guess));
 }
 
-export const formatDate = (d: Date) =>
-  d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+const loc = (lang: 'nl' | 'en' = 'nl') => (lang === 'en' ? 'en-GB' : 'nl-NL');
 
-export const formatEuro = (n: number) =>
-  new Intl.NumberFormat('nl-NL', {
+export const formatDate = (d: Date, lang: 'nl' | 'en' = 'nl') =>
+  d.toLocaleDateString(loc(lang), { day: 'numeric', month: 'long', year: 'numeric' });
+
+export const formatEuro = (n: number, lang: 'nl' | 'en' = 'nl') =>
+  new Intl.NumberFormat(loc(lang), {
     style: 'currency',
     currency: 'EUR',
     maximumFractionDigits: 0,
@@ -71,8 +80,8 @@ export function excerpt(html: string, len = 160) {
   return text.length > len ? text.slice(0, len).replace(/\s\S*$/, '') + '…' : text;
 }
 
-/** Gepubliceerde nieuwsberichten, nieuwste eerst. */
-export async function getNews() {
-  const posts = await getCollection('nieuws', ({ data }) => !data.concept);
+/** Gepubliceerde nieuwsberichten in een taal, nieuwste eerst. */
+export async function getNews(lang: 'nl' | 'en' = 'nl') {
+  const posts = await getCollection(lang === 'en' ? 'news' : 'nieuws', ({ data }) => !data.concept);
   return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }

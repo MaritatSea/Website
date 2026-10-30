@@ -8,7 +8,7 @@ media:
 content:
   # ---------------------------------------------------------------
   - name: nieuws
-    label: 📰 Nieuwsberichten
+    label: "📰 Nieuwsberichten 🇳🇱"
     type: collection
     path: src/content/nieuws
     filename: "{year}-{month}-{day}-{primary}.md"
@@ -19,7 +19,7 @@ content:
       default:
         sort: date
         order: desc
-    fields:
+    fields: &velden_nieuws
       - name: title
         label: Titel
         type: string
@@ -51,8 +51,23 @@ content:
           path: nieuws
 
   # ---------------------------------------------------------------
+  - name: news
+    label: "📰 News (Engelse berichten) 🇬🇧"
+    type: collection
+    path: src/content/news
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, concept]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields: *velden_nieuws
+
+  # ---------------------------------------------------------------
   - name: site
-    label: 💶 Sponsorteller & instellingen
+    label: 💶 Sponsorteller & instellingen (beide talen)
     type: file
     path: src/data/site.json
     format: json
@@ -78,9 +93,6 @@ content:
         description: Na deze dag staat er 'Weer veilig thuis!' in plaats van 'Dag … op zee'.
         options:
           format: yyyy-MM-dd
-      - name: aftelTekst
-        label: Tekst boven de aftelklok
-        type: string
       - name: gofundmeUrl
         label: Link naar je GoFundMe
         type: string
@@ -118,12 +130,6 @@ content:
       - name: organisatieUrl
         label: Website van de organisatie
         type: string
-      - name: footerTekst
-        label: Tekst onderaan de site
-        type: string
-      - name: nieuwsPaginaIntro
-        label: Introductie nieuwspagina
-        type: text
 
   # ---------------------------------------------------------------
   - name: club
@@ -145,6 +151,10 @@ content:
             label: Naam
             type: string
             required: true
+          - name: url
+            label: Link (optioneel)
+            type: string
+            description: "Bijvoorbeeld een website of LinkedIn. Laat leeg als er geen link is, dan staat alleen de naam er."
 
   # ---------------------------------------------------------------
   - name: sponsors
@@ -175,15 +185,15 @@ content:
           - name: url
             label: Website (optioneel)
             type: string
-            description: "Bijvoorbeeld https://www.bedrijf.nl. Het logo wordt dan klikbaar."
+            description: "Bijvoorbeeld www.bedrijf.nl. Laat leeg als het bedrijf geen website heeft, dan is het logo gewoon niet klikbaar."
 
   # ---------------------------------------------------------------
   - name: home
-    label: "🏠 Pagina: Mijn droom (home)"
+    label: "🇳🇱 Pagina: Mijn droom (home)"
     type: file
-    path: src/data/home.json
+    path: src/data/nl/home.json
     format: json
-    fields:
+    fields: &velden_home
       - name: heroLabel
         label: "Bovenaan: klein label"
         type: string
@@ -287,14 +297,23 @@ content:
       - name: nieuwsSubtitel
         label: "Laatste nieuws: ondertitel"
         type: string
+      - name: aftelTekst
+        label: Tekst boven de aftelklok
+        type: string
+      - name: footerTekst
+        label: Tekst onderaan de site
+        type: string
+      - name: nieuwsPaginaIntro
+        label: Introductie nieuwspagina
+        type: text
 
   # ---------------------------------------------------------------
   - name: over
-    label: "🙋‍♀️ Pagina: Over mij"
+    label: "🇳🇱 Pagina: Over mij"
     type: file
-    path: src/data/over-mij.json
+    path: src/data/nl/over-mij.json
     format: json
-    fields:
+    fields: &velden_over
       - name: titel
         label: Titel
         type: string
@@ -331,11 +350,11 @@ content:
 
   # ---------------------------------------------------------------
   - name: reis
-    label: "🗺️ Pagina: De reis"
+    label: "🇳🇱 Pagina: De reis"
     type: file
-    path: src/data/de-reis.json
+    path: src/data/nl/de-reis.json
     format: json
-    fields:
+    fields: &velden_reis
       - name: titel
         label: Titel
         type: string
@@ -377,11 +396,11 @@ content:
 
   # ---------------------------------------------------------------
   - name: sponsorpagina
-    label: "❤️ Pagina: Sponsor mij"
+    label: "🇳🇱 Pagina: Sponsor mij"
     type: file
-    path: src/data/sponsor-mij.json
+    path: src/data/nl/sponsor-mij.json
     format: json
-    fields:
+    fields: &velden_sponsor
       - name: titel
         label: Titel
         type: string
@@ -466,3 +485,274 @@ content:
       - name: bankTekst
         label: "Direct overmaken: tekst"
         type: string
+
+  # ---------------------------------------------------------------
+  - name: ui
+    label: "🇳🇱 Knoppen & kleine teksten"
+    type: file
+    path: src/data/nl/ui.json
+    format: json
+    fields: &velden_ui
+      # Het label is de Nederlandse tekst, zodat je in beide talen ziet waar het om gaat.
+      - name: navHome
+        label: "Mijn droom"
+        type: string
+      - name: navOver
+        label: "Over mij"
+        type: string
+      - name: navReis
+        label: "De reis"
+        type: string
+      - name: navNieuws
+        label: "Nieuws"
+        type: string
+      - name: navSponsor
+        label: "Sponsor mij"
+        type: string
+      - name: taalWissel
+        label: "English"
+        type: string
+      - name: naarInhoud
+        label: "Naar de inhoud"
+        type: string
+      - name: naarHome
+        label: "Marit at Sea, naar de homepagina"
+        type: string
+      - name: standaardTitel
+        label: "Marit at Sea | Help mij aan boord!"
+        type: string
+      - name: standaardOmschrijving
+        label: "Help Marit aan boord! Zes maanden zeilen én naar school op de Thalassa."
+        type: string
+      - name: voetnootGroet
+        label: "Wind in de zeilen! ⛵"
+        type: string
+      - name: cijfersLabel
+        label: "De reis in cijfers"
+        type: string
+      - name: schipAlt
+        label: "Tekening van de Thalassa, het zeilschip waarmee ik de reis maak"
+        type: string
+      - name: logoAlt
+        label: "Logo Marit at Sea"
+        type: string
+      - name: fotoMaritAlt
+        label: "Marit"
+        type: string
+      - name: fotoAanBoordAlt
+        label: "Marit aan boord van de Thalassa"
+        type: string
+      - name: borrelplankAlt
+        label: "Handgemaakte borrelplank met een tekening van de Thalassa"
+        type: string
+      - name: kaartAlt
+        label: "Kaart van de route over de Atlantische Oceaan"
+        type: string
+      - name: havenNederland
+        label: "Nederland"
+        type: string
+      - name: havenTenerife
+        label: "Tenerife"
+        type: string
+      - name: havenDominica
+        label: "Dominica"
+        type: string
+      - name: havenCuracao
+        label: "Curaçao"
+        type: string
+      - name: havenPanama
+        label: "Panama"
+        type: string
+      - name: havenCuba
+        label: "Cuba"
+        type: string
+      - name: havenBermuda
+        label: "Bermuda"
+        type: string
+      - name: havenAzoren
+        label: "Azoren"
+        type: string
+      - name: meerLezen
+        label: "Meer lezen"
+        type: string
+      - name: volgSchip
+        label: "Volg de Thalassa"
+        type: string
+      - name: volgSchipLive
+        label: "Volg de Thalassa live"
+        type: string
+      - name: websiteOrganisatie
+        label: "Website School at Sea"
+        type: string
+      - name: volgReisTitel
+        label: "Volg de reis"
+        type: string
+      - name: opDezePagina
+        label: "Op deze pagina"
+        type: string
+      - name: opgehaald
+        label: "opgehaald"
+        type: string
+      - name: doel
+        label: "doel"
+        type: string
+      - name: voortgangLabel
+        label: "Opgehaald bedrag"
+        type: string
+      - name: voortgangProcent
+        label: "Tekst bij voortgang"
+        type: string
+        description: "Gebruik {pct} op de plek van het percentage."
+      - name: voortgangNul
+        label: "Help jij mij de eerste zeemijlen te varen?"
+        type: string
+      - name: linkBinnenkort
+        label: "Link volgt binnenkort"
+        type: string
+      - name: gofundmeBinnenkort
+        label: "De GoFundMe-link volgt binnenkort!"
+        type: string
+      - name: lint
+        label: "Borrelplank!"
+        type: string
+      - name: stempelVanaf
+        label: "vanaf"
+        type: string
+      - name: wordLid
+        label: "Word lid"
+        type: string
+      - name: doeMeeGofundme
+        label: "Doe mee via GoFundMe"
+        type: string
+      - name: clubVanDe100
+        label: "van de 100 leden"
+        type: string
+      - name: clubDoeMee
+        label: "doe jij ook mee?"
+        type: string
+      - name: clubVol
+        label: "de club is vol, dankjewel! 🎉"
+        type: string
+      - name: hoeWerktHet
+        label: "Hoe werkt het?"
+        type: string
+      - name: mijnSponsoren
+        label: "Mijn sponsoren"
+        type: string
+      - name: manierenSponsoren
+        label: "Manieren om te sponsoren"
+        type: string
+      - name: ibanTnv
+        label: "Ten name van"
+        type: string
+      - name: ibanOmschrijving
+        label: "Omschrijving"
+        type: string
+      - name: kopieer
+        label: "Kopieer"
+        type: string
+      - name: gekopieerd
+        label: "Gekopieerd! ✓"
+        type: string
+      - name: aftelDagen
+        label: "dagen"
+        type: string
+      - name: aftelUur
+        label: "uur"
+        type: string
+      - name: aftelMin
+        label: "min"
+        type: string
+      - name: aftelSec
+        label: "sec"
+        type: string
+      - name: aftelVertrek
+        label: "Vertrek:"
+        type: string
+      - name: aftelOpZee
+        label: "Aftelklok tijdens de reis"
+        type: string
+        description: "Gebruik {n} op de plek van het dagnummer."
+      - name: aftelThuis
+        label: "Weer veilig thuis! ⚓"
+        type: string
+      - name: nieuwsTitel
+        label: "Nieuws"
+        type: string
+      - name: nieuwsOmschrijving
+        label: "Nieuws en verhalen van Marit aan boord van de Thalassa."
+        type: string
+      - name: alleBerichten
+        label: "Alle berichten"
+        type: string
+      - name: terugNaarBerichten
+        label: "← Alle berichten"
+        type: string
+      - name: leesVerder
+        label: "Lees verder"
+        type: string
+      - name: geenBerichten
+        label: "Nog geen berichten, binnenkort meer! ⛵"
+        type: string
+      - name: nieuwsAndereTaal
+        label: "Melding: nieuws vooral in andere taal"
+        type: string
+      - name: nieuwsAndereTaalLink
+        label: "Link naar nieuws in andere taal"
+        type: string
+      - name: vorigBericht
+        label: "← Vorig bericht"
+        type: string
+      - name: volgendBericht
+        label: "Volgend bericht →"
+        type: string
+      - name: meerBerichten
+        label: "Meer berichten"
+        type: string
+      - name: ctaHelp
+        label: "Wil je mij helpen aan boord te komen?"
+        type: string
+      - name: ctaReis
+        label: "Benieuwd naar de reis die ik ga maken?"
+        type: string
+      - name: knopOverReis
+        label: "Over de reis →"
+        type: string
+
+  # ===============================================================
+  # 🇬🇧 ENGELSE VERSIES - zelfde velden, eigen teksten
+  # ===============================================================
+  - name: home_en
+    label: "🇬🇧 Pagina: Mijn droom (home)"
+    type: file
+    path: src/data/en/home.json
+    format: json
+    fields: *velden_home
+
+  - name: over_en
+    label: "🇬🇧 Pagina: Over mij"
+    type: file
+    path: src/data/en/over-mij.json
+    format: json
+    fields: *velden_over
+
+  - name: reis_en
+    label: "🇬🇧 Pagina: De reis"
+    type: file
+    path: src/data/en/de-reis.json
+    format: json
+    fields: *velden_reis
+
+  - name: sponsorpagina_en
+    label: "🇬🇧 Pagina: Sponsor mij"
+    type: file
+    path: src/data/en/sponsor-mij.json
+    format: json
+    fields: *velden_sponsor
+
+  - name: ui_en
+    label: "🇬🇧 Knoppen & kleine teksten"
+    type: file
+    path: src/data/en/ui.json
+    format: json
+    fields: *velden_ui

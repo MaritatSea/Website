@@ -1,18 +1,21 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { formatDate, excerpt, u } from '../lib/utils';
+import { t, postHref, type Lang } from '../i18n';
 
 interface Props {
-  post: CollectionEntry<'nieuws'>;
+  post: CollectionEntry<'nieuws'> | CollectionEntry<'news'>;
+  lang: Lang;
 }
 
-const { post } = Astro.props;
+const { post, lang } = Astro.props;
+const { ui } = t(lang);
 const { title, date, cover, samenvatting } = post.data;
 const summary = samenvatting || excerpt(post.body ?? '');
 ---
 
 <article class="news-card" data-reveal>
-  <a href={u(`/nieuws/${post.id}/`)} class="news-link">
+  <a href={postHref(lang, post.id)} class="news-link">
     <div class="news-img">
       {
         cover ? (
@@ -25,10 +28,10 @@ const summary = samenvatting || excerpt(post.body ?? '');
       }
     </div>
     <div class="news-body">
-      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      <time datetime={date.toISOString()}>{formatDate(date, lang)}</time>
       <h3>{title}</h3>
       {summary && <p>{summary}</p>}
-      <span class="more">Lees verder <span aria-hidden="true">→</span></span>
+      <span class="more">{ui.leesVerder} <span aria-hidden="true">→</span></span>
     </div>
   </a>
 </article>
