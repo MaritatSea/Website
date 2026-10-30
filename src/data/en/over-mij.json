@@ -1,6 +1,6 @@
 {
   "titel": "About me",
-  "samenvatting": "I'm Marit, I'm 15 and I'm in Year 11 (VWO 4) at the Eckartcollege in Eindhoven. I love board games, puzzles, maths competitions and chess. Curious who'll be sailing on the Thalassa?",
+  "samenvatting": "I'm Marit, I'm 15 and I'm in Year 11 (VWO 4) at the Eckartcollege in Eindhoven. I love board games, puzzles, maths competitions and chess.",
   "foto": "/images/marit-kayak.jpg",
   "intro": "I'm Marit and I'm 15 years old. I'm in Year 11 (VWO 4) at the Eckartcollege in Eindhoven. I live with my parents and my two sisters, who are 12 and 16.",
   "weetjes": [
@@ -14,7 +14,7 @@
     },
     {
       "emoji": "♟️",
-      "tekst": "Playing chess since age 5"
+      "tekst": "I've played chess since I was 5"
     },
     {
       "emoji": "🏑",

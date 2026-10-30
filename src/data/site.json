@@ -1,17 +1,11 @@
 {
-  "naam": "Marit",
-  "organisatie": "School at Sea",
-  "organisatieUrl": "https://schoolatsea.com/",
-  "schip": "Thalassa",
-  "schipVolgenUrl": "https://www.vesselfinder.com/nl/?imo=8101276",
-  "gofundmeUrl": "",
-  "vertrekdatum": "2027-10-23T12:00",
-  "terugkomstdatum": "",
+  "opgehaald": 680,
   "doelbedrag": 32000,
-  "opgehaald": 0,
-  "iban": "",
-  "tenaamstelling": "",
-  "omschrijving": "",
-  "email": "",
-  "instagram": ""
+  "vertrekdatum": "2027-10-23T12:00",
+  "terugkomstdatum": "2026-10-30",
+  "schipVolgenUrl": "https://www.vesselfinder.com/nl/?imo=8101276",
+  "naam": "Marit",
+  "schip": "Thalassa",
+  "organisatie": "School at Sea",
+  "organisatieUrl": "https://schoolatsea.com/"
 }

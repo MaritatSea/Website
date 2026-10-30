@@ -83,6 +83,7 @@ content:
       - name: vertrekdatum
         label: Vertrek (datum en tijd)
         type: date
+        default: ""
         description: "Hier telt de klok op de homepagina naartoe. Nederlandse tijd. Tijdens de reis staat er 'Dag 12 op zee'."
         options:
           time: true
@@ -90,9 +91,11 @@ content:
       - name: terugkomstdatum
         label: Terugkomstdatum (optioneel)
         type: date
-        description: Na deze dag staat er 'Weer veilig thuis!' in plaats van 'Dag … op zee'.
+        default: ""
+        description: Na deze dag staat er 'Weer veilig thuis!' in plaats van 'Dag … op zee'. Laat leeg zolang de datum niet bekend is.
         options:
           format: yyyy-MM-dd
+          min: "2027-10-24"
       - name: gofundmeUrl
         label: Link naar je GoFundMe
         type: string
@@ -151,6 +154,7 @@ content:
             label: Naam
             type: string
             required: true
+            description: Namen worden in beide talen precies zo getoond als je ze hier invult (ze worden niet vertaald).
           - name: url
             label: Link (optioneel)
             type: string

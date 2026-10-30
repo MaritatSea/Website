@@ -8,7 +8,7 @@ import Progress from '../components/Progress.astro';
 import ClubPortholes from '../components/ClubPortholes.astro';
 import SponsorLogos from '../components/SponsorLogos.astro';
 import Countdown from '../components/Countdown.astro';
-import site from '../data/site.json';
+import { site } from '../lib/site';
 import sponsorData from '../data/sponsors.json';
 import { getNews, slugify, u, fixHtml } from '../lib/utils';
 import { t, href, type Lang } from '../i18n';

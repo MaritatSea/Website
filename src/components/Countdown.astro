@@ -3,7 +3,7 @@
  * Aftelklok naar het vertrek. Tijdens de reis: "Dag X op zee",
  * na de terugkomstdatum: "Weer veilig thuis".
  */
-import site from '../data/site.json';
+import { site } from '../lib/site';
 import { amsterdamDate } from '../lib/utils';
 import { t, locale, type Lang } from '../i18n';
 
@@ -15,7 +15,9 @@ const { lang } = Astro.props;
 const { ui, home } = t(lang);
 
 const start = amsterdamDate(site.vertrekdatum);
-const end = amsterdamDate(site.terugkomstdatum);
+// Een terugkomstdatum vóór het vertrek is ongeldig (bijv. automatisch ingevuld door het CMS)
+const rawEnd = amsterdamDate(site.terugkomstdatum);
+const end = start && rawEnd && rawEnd > start ? rawEnd : null;
 // Terugkomstdatum geldt tot het eind van die dag
 const endIso = end ? new Date(end.getTime() + 86400000).toISOString() : '';
 
