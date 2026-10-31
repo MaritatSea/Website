@@ -1,8 +1,8 @@
 {
   "heroLabel": "⛵ October 2027 – April 2028 · 12,000 nautical miles",
   "heroTitel": "My dream",
-  "heroLead": "I'm Marit, I'm 15, I'm in Year 11 (VWO 4) at the Eckartcollege in Eindhoven – and I have a dream…",
-  "heroTekst": "<p>My dream is to join School at Sea: an incredible six-month adventure at sea. In October 2027, 36 other young people and I will go on board. We'll cross the Atlantic Ocean twice and visit several countries along the way.</p>",
+  "heroLead": "I'm Marit, I'm 15, I'm in Year 11 (VWO 4) at Eckartcollege in Eindhoven, The Netherlands. ",
+  "heroTekst": "<p>My dream is to join School at Sea, an incredible six-month adventure at sea. In October 2027, 36 other young people and I will board the Thalassa, a 45 meter tall ship. We'll cross the Atlantic Ocean twice and visit multiple countries along the way.&nbsp;</p>",
   "heroKnopSponsor": "Sponsor me",
   "heroKnopReis": "About the voyage",
   "cijfers": [
@@ -24,11 +24,11 @@
     }
   ],
   "waaromTitel": "Why do I want to go?",
-  "waaromIntro": "<p>During the voyage I'll simply keep up with my schoolwork on board and sit the regular tests. On top of that, I'll grow in lots of other ways. Of course I'll learn to sail, and I'll have to learn to cook and everything else it takes to run and sail the ship together. Personal growth is at the heart of it all. I want to become more independent and more confident, and also learn to speak up more. But above all, it's an experience that will stay with me for the rest of my life.</p>",
+  "waaromIntro": "<p>During the voyage I'll simply keep up with my schoolwork on board and sit the regular tests. On top of that, I'll grow in many other ways. Of course I'll learn to sail, and I'll have to learn to cook and everything else it takes to run the ship together. Personal growth is at the heart of it all. I want to become more independent and more confident, and also learn to speak up more. But above all, it's an experience that will stay with me for the rest of my life.&nbsp;</p>",
   "waaromPunten": [
     {
       "icoon": "kompas",
-      "tekst": "I want to learn to be more independent. Five teachers are coming along, but the idea is that you work through your schoolwork on board as independently as possible."
+      "tekst": "I want to learn to be more independent. Five fully certified teachers are coming along, but the idea is that you work through your schoolwork on board as independently as possible. "
     },
     {
       "icoon": "stuur",
@@ -40,18 +40,18 @@
     },
     {
       "icoon": "wereld",
-      "tekst": "I'd really love to see something of the world. I haven't seen much of it yet, and I think it would be great fun – and very educational – to experience other cultures too."
+      "tekst": "I would really love to see more of the world. I haven't seen much of it yet. I think it would be great fun, very educational and look forward to experiencing other cultures too."
     },
     {
       "icoon": "boek",
-      "tekst": "Doing my schoolwork on my own, without all the lessons, sounds really nice too."
+      "tekst": "Doing my schoolwork on my own, at my own pace, without all the lessons, sounds really nice too. "
     },
     {
       "icoon": "vrienden",
       "tekst": "The skills and friendships I'll gain will be incredibly valuable."
     }
   ],
-  "waaromAfsluiting": "When I come back, I'll have changed a lot – in a positive way. I want to use that to inspire other people to follow their dreams too. I'll share my experiences with others, and I'll use my new view of the world and everything I've learnt in the rest of my school years and studies.",
+  "waaromAfsluiting": "When I come back, I expect to have changed in a positive way. I want to use that to inspire other people to follow their dreams too. I'll share my experiences with others, and I'll use my new view of the world and everything I've learnt in the rest of my school years and studies.",
   "overKnop": "More about me",
   "reisKnop": "Read more",
   "sponsorKnop": "All about sponsoring",
@@ -59,7 +59,7 @@
   "sponsorsTekst": "These companies are helping me make my dream come true. Thank you so much!",
   "nieuwsTitel": "Latest news",
   "nieuwsSubtitel": "Stories and photos from the preparations and from sea.",
-  "footerTekst": "Six months of sailing – and school – with School at Sea.",
-  "nieuwsPaginaIntro": "Here you can read all about the preparations, and soon about life on board the Thalassa.",
-  "aftelTekst": "Not long now until we set sail!"
+  "aftelTekst": "Counting down until we set sail!",
+  "footerTekst": "School at Sea – six months of sailing and school",
+  "nieuwsPaginaIntro": "Here you can read all about the preparations, and soon about life on board the Thalassa."
 }
