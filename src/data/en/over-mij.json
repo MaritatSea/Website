@@ -1,12 +1,12 @@
 {
   "titel": "About me",
-  "samenvatting": "I'm Marit, I'm 15 and I'm in Year 11 (VWO 4) at the Eckartcollege in Eindhoven. I love board games, puzzles, maths competitions and chess.",
+  "samenvatting": "I'm Marit, I'm 15 and I'm in Year 11 (VWO 4) at Eckartcollege in Eindhoven, The Netherlands. I love board games, puzzles, maths competitions and chess.",
   "foto": "/images/marit-kayak.jpg",
-  "intro": "I'm Marit and I'm 15 years old. I'm in Year 11 (VWO 4) at the Eckartcollege in Eindhoven. I live with my parents and my two sisters, who are 12 and 16.",
+  "intro": "I'm Marit and I'm 15 years old. I'm in Year 11 (VWO 4) at Eckartcollege in Eindhoven, The Netherlands. I live with my parents and my two sisters, who are 12 and 16.",
   "weetjes": [
     {
       "emoji": "🎲",
-      "tekst": "Two cupboards full of games"
+      "tekst": "Two bookcases full of games"
     },
     {
       "emoji": "🧮",
@@ -18,12 +18,12 @@
     },
     {
       "emoji": "🏑",
-      "tekst": "Played hockey for 9 years"
+      "tekst": "I played hockey for 9 years"
     },
     {
       "emoji": "🏎️",
-      "tekst": "Huge Formula 1 fan"
+      "tekst": "Formula 1 fan"
     }
   ],
-  "tekst": "<h2>Games</h2><p>I absolutely love playing games. That's why we have loads of them at home – two big cupboards full! One of my favourites is Rummikub. I love it because it isn't too complicated, so you can play it with anyone. But you really do have to think hard and puzzle things out.</p><h2>Maths competitions</h2><p>I really enjoy maths competitions. That's where puzzling and logical reasoning come in handy again. I love the Kangaroo competition, the Bebras challenge and the Mathematical Olympiad. Last year I even reached the national finals of both the Bebras challenge and the Mathematical Olympiad.</p><h2>Chess</h2><p>I also play chess. I had chess lessons from the age of 5 to 11. I don't play as much as I used to, but I still enter the odd tournament now and then, which I really enjoy.</p><h2>Hockey and Formula 1</h2><p>I love watching hockey – I played it myself for 9 years. I also really enjoy watching Formula 1. I can get completely absorbed in it, so I'm definitely going to miss that when I'm at sea for six months.</p>"
+  "tekst": "<h2>Games</h2><p>I love playing games. That's why we have a big collection at home – two big bookcases full! One of my favourites is Rummikub. I love it because it isn't too complicated, so you can play it with anyone. But you really do have to think hard and puzzle things out.</p><h2>Maths competitions</h2><p>I really enjoy maths competitions. That's where puzzling and logical reasoning come in handy again. I love the Kangaroo competition, the Bebras challenge and the Mathematical Olympiad. Last year I even reached the Dutch national finals of both the Bebras challenge and the Mathematical Olympiad.</p><h2>Chess</h2><p>I also play chess. I had chess lessons from the age of 5 to 11. I don't play as much as I used to, but I still enter the odd tournament now and then, which I really enjoy.</p><h2>Hockey and Formula 1</h2><p>I love watching hockey, I played it myself for 9 years. I also really enjoy watching Formula 1. I can get completely absorbed in it, so I'm definitely going to miss that when I'm at sea for six months.</p>"
 }
