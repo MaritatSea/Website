@@ -2,7 +2,7 @@
   "heroLabel": "⛵ Oktober 2027 – april 2028 · 12.000 zeemijl",
   "heroTitel": "Mijn droom",
   "heroLead": "Ik ben Marit, 15 jaar en zit in vwo 4 op het Eckartcollege in Eindhoven en heb een droom…",
-  "heroTekst": "<p>Mijn droom is om mee te gaan met School at Sea. Een waanzinnig avontuur van zes maanden op zee. In oktober 2027 gaan 36 andere kinderen en ik aan boord. We zeilen twee keer de Atlantische Oceaan over en doen verschillende landen aan.</p>",
+  "heroTekst": "<p>Mijn droom is om mee te gaan met School at Sea. Een waanzinnig avontuur van zes maanden op zee. In oktober 2027 gaan 36 andere kinderen en ik aan boord. We zeilen twee keer de Atlantische Oceaan over en bezoeken verschillende landen.</p>",
   "heroKnopSponsor": "Sponsor mij",
   "heroKnopReis": "Over de reis",
   "cijfers": [
@@ -24,11 +24,11 @@
     }
   ],
   "waaromTitel": "Waarom wil ik mee?",
-  "waaromIntro": "<p>Tijdens deze reis maak ik aan boord gewoon mijn schoolwerk en doe ik de reguliere toetsen. Daarnaast ontwikkel ik me op andere vlakken. Ik leer natuurlijk zeilen, moet leren koken en alles wat verder aan boord nodig is om samen het schip te runnen en te zeilen. Zelfontwikkeling staat hierbij centraal. Ik wil zelfstandiger en zelfverzekerder worden, maar ook leren om mijn stem meer te laten horen. Maar bovenal is het natuurlijk een ervaring die mij mijn hele leven bij zal blijven.</p>",
+  "waaromIntro": "<p>Tijdens deze reis maak ik aan boord gewoon mijn schoolwerk en doe ik de reguliere toetsen. Er gaan vijf docenten mee, maar de bedoeling is dat je aan boord je schoolwerk zo zelfstandig mogelijk doet. Daarnaast ontwikkel ik me op andere vlakken. Ik leer natuurlijk zeilen, koken en alles wat verder nodig is aan boord om samen het schip te runnen. Zelfontwikkeling staat hierbij centraal. </p>",
   "waaromPunten": [
     {
       "icoon": "kompas",
-      "tekst": "Ik wil leren om zelfstandiger te worden. Er gaan vijf docenten mee, maar de bedoeling is dat je aan boord je schoolwerk zo zelfstandig mogelijk doorwerkt."
+      "tekst": "Ik wil leren om zelfstandiger te worden. Dit ga ik leren tijdens het zeilen en het doen van mijn schoolwerk. "
     },
     {
       "icoon": "stuur",
@@ -40,18 +40,18 @@
     },
     {
       "icoon": "wereld",
-      "tekst": "Ik wil heel graag iets van de wereld zien. Zelf heb ik nog niet zoveel van de wereld gezien, maar het lijkt mij heel leuk en leerzaam om ook iets van andere culturen mee te krijgen."
+      "tekst": "Ik wil graag nieuwe landen bezoeken en dingen meekrijgen van andere culturen, dit lijkt mij heel leerzaam en leuk."
     },
     {
       "icoon": "boek",
-      "tekst": "Het schoolwerk alleen doen zonder alle lessen lijkt me ook heel fijn."
+      "tekst": "Het schoolwerk zelfstandig doen zonder alle lessen lijkt me ook heel fijn."
     },
     {
       "icoon": "vrienden",
-      "tekst": "De vaardigheden en de vriendschappen die ik op zal doen, zullen van grote waarde zijn."
+      "tekst": "Deze ervaring is iets wat mij mijn hele leven bij zal blijven. Net als de vaardigheden en vriendschappen die ik hier aan over houd. "
     }
   ],
-  "waaromAfsluiting": "Als ik terugkom zal ik ook erg veranderd zijn. Op een positieve manier. Ik wil dit gebruiken om andere mensen te inspireren om ook hun dromen te volgen. Zo zal ik mijn ervaringen delen met andere mensen en ga ik mijn nieuwe wereldbeeld en alle ervaringen die ik heb opgedaan gebruiken in mijn verdere schooltijd en studie.",
+  "waaromAfsluiting": "Als ik terugkom zal ik op een positieve manier veranderd zijn. Zo heb ik door alle ervaringen een nieuw wereldbeeld gekregen. Ik wil mijn ervaringen delen met anderen en deze gebruiken om andere mensen te inspireren ook hun dromen te volgen. Ook ga ik alles wat ik heb opgedaan uit dit avontuur gebruiken in mijn verdere schooltijd en studie.",
   "overKnop": "Meer over mij",
   "reisKnop": "Meer lezen",
   "sponsorKnop": "Alles over sponsoren",
@@ -59,7 +59,7 @@
   "sponsorsTekst": "Deze bedrijven helpen mij om mijn droom waar te maken. Heel erg bedankt!",
   "nieuwsTitel": "Laatste nieuws",
   "nieuwsSubtitel": "Verhalen en foto's van de voorbereidingen en vanaf zee.",
+  "aftelTekst": "Nog even en dan gaan we de zee op!",
   "footerTekst": "Zes maanden zeilen én naar school met School at Sea.",
-  "nieuwsPaginaIntro": "Hier lees je alles over de voorbereidingen en straks over het leven aan boord van de Thalassa.",
-  "aftelTekst": "Nog even en dan gaan we de zee op!"
+  "nieuwsPaginaIntro": "Hier lees je alles over de voorbereidingen en straks over het leven aan boord van de Thalassa."
 }
