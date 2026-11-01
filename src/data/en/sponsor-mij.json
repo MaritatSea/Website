@@ -27,7 +27,7 @@
       "tekst": "Your flag is hoisted in every port!"
     }
   ],
-  "factuurTekst": "<p>Businesses that would like to support me will receive a sponsorship invoice from School at Sea. This invoice includes 21% VAT. The amount is paid to School at Sea and is deducted by School at Sea from the amount I have to pay for the voyage. Should the voyage not go ahead for me for any reason, School at Sea will get in touch to discuss what should happen to the money.</p>",
+  "factuurTekst": "<p>Businesses that would like to support me will receive a sponsorship invoice from School at Sea. This invoice includes 21% VAT for companies registered in The Netherlands. All foreign companies will be charged 0% VAT, provided they can provide a valid VAT number. The amount is paid to School at Sea and is deducted by School at Sea from the amount I have to pay for the voyage. Should the voyage not go ahead for me for any reason, School at Sea will get in touch to discuss what should happen to the money.</p>",
   "contactTekst": "Interested? Drop me a message and I'll happily come by!",
   "bankTitel": "Direct bank transfer",
   "bankTekst": "Prefer to transfer directly? You can do so to:"
